@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.jvmart.controllers.AdminProductsController"
+           stylesheets="@../css/jvmart-dark.css">
+
+    <VBox spacing="0" styleClass="app-root admin-page">
+        <padding>
+            <Insets top="48" right="48" bottom="48" left="48"/>
+        </padding>
+
+        <!-- Header -->
+        <HBox alignment="BASELINE_LEFT" styleClass="admin-header">
+            <VBox HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="Product Management" styleClass="admin-page-title"/>
+                <Label text="Curate and manage your archive of products." styleClass="admin-page-subtitle"/>
+            </VBox>
+            <Button text="+ Add New Product" styleClass="btn-admin-primary" onAction="#openAddProduct"/>
+        </HBox>
+
+        <!-- Filter and Sort controls -->
+        <HBox spacing="16" styleClass="admin-controls-row" alignment="CENTER_LEFT">
+            <Label text="Filter:" styleClass="control-label"/>
+            <Button fx:id="filterAllBtn" text="All" styleClass="filter-tab-active" onAction="#filterAll"/>
+            <Button fx:id="filterElectronicsBtn" text="Electronics" styleClass="filter-tab" onAction="#filterElectronics"/>
+            <Button fx:id="filterClothingBtn" text="Clothing" styleClass="filter-tab" onAction="#filterClothing"/>
+            <Button fx:id="filterHomeBtn" text="Home &amp; Living" styleClass="filter-tab" onAction="#filterHome"/>
+            <Button fx:id="filterEditorialBtn" text="Editorial" styleClass="filter-tab" onAction="#filterEditorial"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Sort:" styleClass="control-label"/>
+            <ComboBox fx:id="sortCombo" prefWidth="180" styleClass="admin-combo"/>
+        </HBox>
+
+        <!-- Products table -->
+        <VBox spacing="0" VBox.vgrow="ALWAYS" styleClass="admin-table-container">
+            <TableView fx:id="productsTable" VBox.vgrow="ALWAYS" styleClass="table-view admin-table">
+                <columns>
+                    <TableColumn fx:id="colId"       text="ID"        prefWidth="80"/>
+                    <TableColumn fx:id="colName"     text="NAME"      prefWidth="250"/>
+                    <TableColumn fx:id="colCategory" text="CATEGORY"  prefWidth="140"/>
+                    <TableColumn fx:id="colPrice"    text="PRICE"     prefWidth="120"/>
+                    <TableColumn fx:id="colStock"    text="STOCK"     prefWidth="100"/>
+                    <TableColumn fx:id="colActions"  text="ACTIONS"   prefWidth="180"/>
+                </columns>
+            </TableView>
+            <HBox alignment="CENTER_RIGHT" spacing="8" styleClass="admin-table-footer">
+                <Label fx:id="showingLabel" text="Showing 0 of 0 products" styleClass="label-muted" HBox.hgrow="ALWAYS"/>
+                <Button text="◀" styleClass="pagination-btn" onAction="#prevPage"/>
+                <Label text="Page" styleClass="pagination-btn" fx:id="currentPageLabel"/>
+                <Button text="▶" styleClass="pagination-btn" onAction="#nextPage"/>
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <!-- Add/Edit Product modal (hidden by default, shown programmatically) -->
+    <StackPane fx:id="modalOverlay" visible="false" managed="false" styleClass="modal-overlay" StackPane.alignment="CENTER">
+        <VBox styleClass="card admin-modal" maxWidth="560" spacing="0">
+            <HBox alignment="CENTER_LEFT" styleClass="modal-header">
+                <Label fx:id="modalTitle" text="Add New Product" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                <Button text="X" styleClass="btn-ghost" onAction="#closeModal"/>
+            </HBox>
+
+            <!-- Product Name -->
+            <Label text="PRODUCT NAME" styleClass="form-label form-label-top"/>
+            <TextField fx:id="productNameField" promptText="Product name" styleClass="text-field-jv"/>
+            <Label fx:id="nameError" styleClass="form-error-label" visible="false" managed="false"/>
+
+            <!-- Description -->
+            <Label text="DESCRIPTION" styleClass="form-label"/>
+            <TextArea fx:id="descField" promptText="Product description..." styleClass="text-area-jv" prefRowCount="3" wrapText="true"/>
+
+            <!-- Category + Price + Stock -->
+            <GridPane hgap="16" vgap="0" styleClass="form-grid">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="40"/>
+                    <ColumnConstraints percentWidth="30"/>
+                    <ColumnConstraints percentWidth="30"/>
+                </columnConstraints>
+                <VBox GridPane.columnIndex="0" spacing="0">
+                    <Label text="CATEGORY" styleClass="form-label form-label-top"/>
+                    <ComboBox fx:id="categoryCombo" styleClass="combo-box-jv" style="-fx-max-width:Infinity;"/>
+                </VBox>
+                <VBox GridPane.columnIndex="1" spacing="0">
+                    <Label text="PRICE (GHS)" styleClass="form-label form-label-top"/>
+                    <TextField fx:id="priceField" promptText="0.00" styleClass="text-field-jv"/>
+                </VBox>
+                <VBox GridPane.columnIndex="2" spacing="0">
+                    <Label text="STOCK" styleClass="form-label form-label-top"/>
+                    <TextField fx:id="stockField" promptText="0" styleClass="text-field-jv"/>
+                </VBox>
+            </GridPane>
+
+            <Label text="IMAGE PATH" styleClass="form-label"/>
+            <HBox spacing="10">
+                <TextField fx:id="imagePathField" promptText="C:\images\product.jpg or /com/jvmart/assets/product.png" styleClass="text-field-jv" HBox.hgrow="ALWAYS"/>
+                <Button text="Browse" styleClass="btn-outline" onAction="#chooseImage"/>
+            </HBox>
+
+            <!-- General error -->
+            <Label fx:id="modalError" styleClass="form-error-label" visible="false" managed="false"/>
+
+            <!-- Buttons -->
+            <HBox spacing="12" styleClass="modal-actions" alignment="CENTER_RIGHT">
+                <Button text="Cancel" styleClass="btn-outline" onAction="#closeModal"/>
+                <Button fx:id="saveProductBtn" text="Save product" styleClass="btn-secondary" onAction="#saveProduct"/>
+            </HBox>
+        </VBox>
+    </StackPane>
+
+    <!-- Delete confirmation modal -->
+    <StackPane fx:id="deleteOverlay" visible="false" managed="false" styleClass="modal-overlay" StackPane.alignment="CENTER">
+        <VBox styleClass="card admin-modal-delete" maxWidth="380" spacing="0">
+            <Label text="Delete Product" styleClass="modal-delete-title"/>
+            <Label text="Are you sure you want to delete this product? This action cannot be undone." styleClass="label-muted" wrapText="true"/>
+            <HBox spacing="12" styleClass="modal-actions" alignment="CENTER_RIGHT">
+                <Button text="Cancel" styleClass="btn-outline" onAction="#closeDelete"/>
+                <Button text="Delete" styleClass="btn-danger" onAction="#confirmDelete"/>
+            </HBox>
+        </VBox>
+    </StackPane>
+</StackPane>

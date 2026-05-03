@@ -1,0 +1,2043 @@
+/* JVMart LIGHT THEME - Clean, warm, professional */
+
+.app-root {
+    -fx-background-color: #fff8f3;
+    -fx-font-family: "Inter";
+}
+
+/* Top Navigation Bar */
+.top-bar {
+    -fx-background-color: #fff8f3;
+    -fx-border-color: #cfc4c626;
+    -fx-border-width: 0 0 1 0;
+}
+
+.brand-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 24px;
+    -fx-text-fill: #0a0708;
+}
+
+.admin-badge {
+    -fx-background-color: #231f20;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: 12px;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+}
+
+.navbar-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4c4547;
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 6 0 6 0;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+}
+
+.navbar-link:hover {
+    -fx-text-fill: #0a0708;
+}
+
+.navbar-link-active {
+    -fx-background-color: transparent;
+    -fx-text-fill: #0a0708;
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 6 0 6 0;
+    -fx-cursor: hand;
+    -fx-border-color: transparent transparent #a93724 transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-background-radius: 0;
+}
+
+/* Icon Buttons */
+.icon-btn {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 20px;
+    -fx-padding: 8px;
+    -fx-cursor: hand;
+}
+
+.icon-btn:hover {
+    -fx-background-color: #eae1d8;
+}
+
+.icon-svg {
+    -fx-fill: #4c4547;
+}
+
+.btn-theme {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4c4547;
+    -fx-border-color: #cfc4c6;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-pref-height: 36px;
+    -fx-padding: 0 14 0 14;
+    -fx-font-family: "Inter";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.btn-logout {
+    -fx-background-color: #231f20;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8;
+    -fx-pref-height: 36px;
+    -fx-padding: 0 14 0 14;
+    -fx-font-family: "Inter";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.btn-logout:hover {
+    -fx-background-color: #3d3638;
+}
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: #fbf2e9;
+}
+
+.sidebar-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-text-fill: #0a0708;
+}
+
+.sidebar-subtitle {
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+    -fx-opacity: 0.7;
+}
+
+.sidebar-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4c4547;
+    -fx-font-family: "Inter";
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 24 12 32;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+}
+
+.sidebar-item:hover {
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-text-fill: #0a0708;
+}
+
+.sidebar-item-active {
+    -fx-background-color: rgba(255,255,255,0.5);
+    -fx-text-fill: #a93724;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 24 12 28;
+    -fx-cursor: hand;
+    -fx-border-color: #a93724;
+    -fx-border-width: 0 0 0 4;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.btn-export {
+    -fx-background-color: #92d1d6;
+    -fx-text-fill: #004f54;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.btn-logout-sidebar {
+    -fx-background-color: #231f20;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+/* Content Area */
+.content-area {
+    -fx-background-color: #fff8f3;
+}
+
+/* Cards */
+.card, .card-surface, .stat-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.06), 20, 0, 0, 4);
+}
+
+.card-dark {
+    -fx-background-color: #231f20;
+    -fx-background-radius: 12;
+}
+
+/* Tables */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-table-cell-border-color: #cfc4c626;
+}
+
+.table-row-cell {
+    -fx-background-color: #ffffff;
+    -fx-table-cell-border-color: #cfc4c626;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #fbf2e9;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #a93724;
+    -fx-text-fill: #ffffff;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #231f20;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #3d3638;
+}
+
+.btn-primary {
+    -fx-background-color: #231f20;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.btn-secondary {
+    -fx-background-color: #a93724;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.btn-ghost {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a93724;
+    -fx-font-weight: bold;
+}
+
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4c4547;
+    -fx-border-color: #cfc4c6;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+/* Form Inputs */
+.text-field, .password-field, .text-area {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 14 16 14 16;
+    -fx-font-family: "Inter";
+    -fx-font-size: 13px;
+    -fx-text-fill: #0a0708;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #a93724;
+    -fx-border-width: 2;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #0a0708;
+    -fx-font-family: "Inter";
+}
+
+.label-muted {
+    -fx-text-fill: #4c4547;
+    -fx-font-size: 12px;
+}
+
+.label-tiny {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4c4547;
+}
+
+.page-title, .section-title, .brand-title {
+    -fx-text-fill: #0a0708;
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+}
+
+.page-subtitle {
+    -fx-text-fill: #4c4547;
+    -fx-font-size: 14px;
+}
+
+/* Filter Tabs */
+.filter-tab {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4c4547;
+    -fx-font-family: "Inter";
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+    -fx-background-radius: 8;
+}
+
+.filter-tab:hover {
+    -fx-background-color: rgba(169,55,36,0.1);
+}
+
+.filter-tab-active {
+    -fx-background-color: rgba(255,255,255,0.5);
+    -fx-text-fill: #a93724;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+    -fx-border-color: #a93724;
+    -fx-border-width: 0 0 0 4;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+/* Pagination */
+.pagination-btn {
+    -fx-background-color: #fbf2e9;
+    -fx-text-fill: #4c4547;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-padding: 6 12 6 12;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.pagination-btn:hover {
+    -fx-background-color: #eae1d8;
+}
+
+.pagination-btn-active {
+    -fx-background-color: #a93724;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-padding: 6 12 6 12;
+    -fx-background-radius: 8;
+}
+
+/* Status Badges */
+.status-pending { -fx-text-fill: #a93724; -fx-font-weight: bold; }
+.status-paid { -fx-text-fill: #004f54; -fx-font-weight: bold; }
+.status-shipped { -fx-text-fill: #006d77; -fx-font-weight: bold; }
+.status-cancelled { -fx-text-fill: #ba1a1a; -fx-font-weight: bold; }
+
+/* Charts */
+.chart {
+    -fx-background-color: transparent;
+}
+.chart-bar {
+    -fx-bar-fill: #a93724;
+}
+.chart-bar:hover {
+    -fx-bar-fill: #231f20;
+}
+
+/* Scrollbar */
+.scroll-bar {
+    -fx-background-color: #fff8f3;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #cfc4c6;
+    -fx-background-radius: 8;
+}
+
+/* Dialogs */
+.dialog-pane {
+    -fx-background-color: #ffffff;
+}
+
+/* ===================== */
+/* LOGIN / REGISTER PAGES */
+/* ===================== */
+.login-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.08), 60, 0, 0, 10);
+}
+
+.login-panel-dark {
+    -fx-background-color: #0a0708;
+    -fx-padding: 48 32 48 32;
+}
+
+.login-brand-dark {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 28px;
+    -fx-text-fill: #ffffff;
+}
+
+.login-subtitle-dark {
+    -fx-text-fill: #8d8687;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 0 0 0;
+}
+
+.login-quote {
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+    -fx-text-fill: #cfc4c6;
+    -fx-padding: 0 0 12 0;
+}
+
+.login-quote-cite {
+    -fx-font-family: "Inter";
+    -fx-font-size: 10px;
+    -fx-text-fill: #8d8687;
+    -fx-padding: 12 0 0 0;
+}
+
+.login-form-panel {
+    -fx-padding: 48 48 48 48;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 0 12 12 0;
+}
+
+.login-header {
+    -fx-padding: 0 0 40 0;
+}
+
+.login-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 28px;
+    -fx-text-fill: #0a0708;
+}
+
+.login-subtitle {
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-text-fill: #4c4547;
+    -fx-opacity: 0.9;
+}
+
+.form-label {
+    -fx-padding: 0 0 6 0;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4c4547;
+}
+
+.form-label-row {
+    -fx-padding: 16 0 6 0;
+}
+
+.btn-forgot {
+    -fx-font-family: "Inter";
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #a93724;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.form-error-label {
+    -fx-padding: 4 0 0 0;
+    -fx-text-fill: #ba1a1a;
+    -fx-font-size: 11px;
+}
+
+.success-label {
+    -fx-text-fill: #004f54;
+    -fx-font-size: 12px;
+    -fx-padding: 8 0 0 0;
+}
+
+.btn-full {
+    -fx-max-width: Infinity;
+}
+
+.login-footer {
+    -fx-padding: 24 0 0 0;
+}
+
+.login-footer-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+.btn-link {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+    -fx-underline: true;
+    -fx-padding: 0 4 0 4;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+/* Register specific */
+.register-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.10), 40, 0, 0, 10);
+}
+
+.register-scroll {
+    -fx-background-color: #ffffff;
+    -fx-border-color: transparent;
+}
+
+.register-form-panel {
+    -fx-padding: 40 48 40 48;
+    -fx-background-color: #ffffff;
+}
+
+.register-title {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+}
+
+.register-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #4c4547;
+    -fx-padding: 4 0 20 0;
+}
+
+.register-footer {
+    -fx-padding: 16 0 0 0;
+}
+
+.register-footer-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+/* ===================== */
+/* MAIN LAYOUT (CUSTOMER) */
+/* ===================== */
+.cart-btn {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.cart-icon-wrap {
+    -fx-background-color: transparent;
+}
+
+.cart-icon {
+    -fx-fill: #0a0708;
+}
+
+.cart-badge {
+    -fx-background-color: #92d1d6;
+    -fx-text-fill: #004f54;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10px;
+    -fx-padding: 1 5 1 5;
+}
+
+.btn-theme {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4c4547;
+    -fx-border-color: #cfc4c6;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-pref-height: 36px;
+    -fx-padding: 0 14 0 14;
+    -fx-font-family: "Inter";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.btn-logout {
+    -fx-background-color: #231f20;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8;
+    -fx-pref-height: 36px;
+    -fx-padding: 0 14 0 14;
+    -fx-font-family: "Inter";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.nav-divider {
+    -fx-background-color: rgba(207,196,198,0.3);
+}
+
+.profile-btn {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 20px;
+    -fx-padding: 8px;
+    -fx-cursor: hand;
+}
+
+.profile-icon {
+    -fx-fill: #4c4547;
+}
+
+.sidebar {
+    -fx-background-color: #fbf2e9;
+}
+
+.sidebar-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-text-fill: #0a0708;
+}
+
+.sidebar-subtitle {
+    -fx-font-family: "Inter";
+    -fx-font-size: 10px;
+    -fx-text-fill: #4c4547;
+    -fx-opacity: 0.7;
+}
+
+.sidebar-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4c4547;
+    -fx-font-family: "Inter";
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 24 12 24;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+}
+
+.sidebar-item-active {
+    -fx-background-color: rgba(255,255,255,0.5);
+    -fx-text-fill: #a93724;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 24 12 20;
+    -fx-cursor: hand;
+    -fx-border-color: #a93724;
+    -fx-border-width: 0 0 0 4;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.sidebar-promo {
+    -fx-background-color: #eae1d8;
+    -fx-background-radius: 12px;
+    -fx-padding: 16px;
+}
+
+.sidebar-promo-title {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+    -fx-text-fill: #a93724;
+    -fx-padding: 0 0 8 0;
+}
+
+.sidebar-promo-text {
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-text-fill: #1f1b16;
+}
+
+.content-area {
+    -fx-background-color: #fff8f3;
+}
+
+/* ===================== */
+/* CUSTOMER HOME PAGE */
+/* ===================== */
+.page-content {
+    -fx-background-color: #fff8f3;
+}
+
+.hero-banner {
+    -fx-background-color: #0a0708;
+    -fx-background-radius: 16;
+    -fx-padding: 60 48 60 48;
+    -fx-margin: 0 0 32 0;
+    -fx-effect: dropshadow(gaussian, rgba(10,7,8,0.15), 30, 0, 0, 10);
+}
+
+.hero-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 42px;
+    -fx-text-fill: #ffffff;
+}
+
+.hero-subtitle {
+    -fx-font-family: "Inter";
+    -fx-font-size: 18px;
+    -fx-text-fill: #cfc4c6;
+    -fx-padding: 0 0 20 0;
+}
+
+.btn-hero-primary {
+    -fx-background-color: #a93724;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8;
+    -fx-padding: 14 32 14 32;
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.btn-hero-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 8;
+    -fx-border-width: 2;
+    -fx-padding: 14 32 14 32;
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.stats-section {
+    -fx-padding: 0 0 32 0;
+}
+
+.stat-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.06), 20, 0, 0, 4);
+}
+
+.stat-icon {
+    -fx-background-radius: 8;
+    -fx-padding: 12;
+}
+
+.stat-icon-cart {
+    -fx-background-color: #fbf2e9;
+}
+
+.stat-icon-pending {
+    -fx-background-color: #f6ece3;
+}
+
+.stat-icon-completed {
+    -fx-background-color: #004f54;
+}
+
+.stat-icon-svg {
+    -fx-fill: #0a0708;
+}
+
+.stat-icon-svg-pending {
+    -fx-fill: #a93724;
+}
+
+.stat-icon-svg-completed {
+    -fx-fill: #ffffff;
+}
+
+.stat-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4c4547;
+}
+
+.stat-value {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 24px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #0a0708;
+}
+
+.stat-value-pending {
+    -fx-text-fill: #a93724;
+}
+
+.stat-value-completed {
+    -fx-text-fill: #004f54;
+}
+
+.categories-section {
+    -fx-padding: 0 0 32 0;
+}
+
+.section-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 28px;
+    -fx-text-fill: #0a0708;
+}
+
+.category-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 32 16 32 16;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.06), 15, 0, 0, 3);
+}
+
+.category-icon {
+    -fx-background-radius: 50;
+    -fx-padding: 20;
+}
+
+.category-icon-electronics {
+    -fx-background-color: #fbf2e9;
+}
+
+.category-icon-clothing {
+    -fx-background-color: #f6ece3;
+}
+
+.category-icon-home {
+    -fx-background-color: #e8f5e9;
+}
+
+.category-icon-editorial {
+    -fx-background-color: #fff3e0;
+}
+
+.category-icon-svg {
+    -fx-fill: #0a0708;
+}
+
+.category-label {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #0a0708;
+}
+
+.featured-section {
+    -fx-padding: 0 0 32 0;
+}
+
+.btn-link-accent {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a93724;
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+}
+
+/* ===================== */
+/* PRODUCT CATALOG */
+/* ===================== */
+.transparent-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.page-content-inner {
+    -fx-background-color: transparent;
+}
+
+.search-bar {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 12px;
+}
+
+.search-input {
+    -fx-background-color: transparent;
+    -fx-padding: 16 16 16 48;
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-pref-height: 52px;
+}
+
+.search-icon {
+    -fx-fill: #7e7577;
+}
+
+.sort-combo {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 12px;
+    -fx-padding: 8 12 8 12;
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-pref-width: 190px;
+    -fx-pref-height: 52px;
+}
+
+.btn-dark {
+    -fx-background-color: #0a0708;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 12px;
+    -fx-padding: 16 24 16 24;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+/* ===================== */
+/* PRODUCT DETAIL */
+/* ===================== */
+.product-detail-section {
+    -fx-padding: 20 0 0 0;
+}
+
+.product-main-image {
+    -fx-background-color: #f0e7de;
+}
+
+.thumb-selected {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 8;
+    -fx-border-color: #a93724;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+.thumb-normal {
+    -fx-background-color: #f0e7de;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.thumb-normal:hover {
+    -fx-background-color: #fbf2e9;
+}
+
+.product-category {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #a93724;
+    -fx-padding: 0 0 8 0;
+}
+
+.product-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 28px;
+    -fx-text-fill: #0a0708;
+}
+
+.reviews-row {
+    -fx-padding: 10 0 12 0;
+}
+
+.product-price {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 22px;
+    -fx-text-fill: #a93724;
+}
+
+.label-strikethrough {
+    -fx-strikethrough: true;
+}
+
+.product-description {
+    -fx-font-size: 13px;
+    -fx-line-spacing: 3;
+}
+
+.stock-qty-row {
+    -fx-padding: 20 0 0 0;
+}
+
+.product-stock {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: #004f54;
+}
+
+.qty-box {
+    -fx-background-color: #f6ece3;
+    -fx-background-radius: 8;
+    -fx-padding: 4;
+}
+
+.qty-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #0a0708;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-cursor: hand;
+}
+
+.qty-label {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #0a0708;
+    -fx-min-width: 32px;
+    -fx-alignment: center;
+}
+
+.action-buttons-row {
+    -fx-padding: 16 0 0 0;
+}
+
+.btn-add-cart {
+    -fx-pref-height: 50px;
+    -fx-font-size: 13px;
+    -fx-pref-width: 280px;
+}
+
+.btn-wishlist {
+    -fx-pref-width: 60px;
+    -fx-pref-height: 50px;
+    -fx-font-size: 14px;
+}
+
+.specs-grid {
+    -fx-padding: 16 0 0 0;
+}
+
+.spec-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4c4547;
+}
+
+.spec-value {
+    -fx-font-size: 12px;
+    -fx-text-fill: #0a0708;
+}
+
+.reviews-section {
+    -fx-padding: 32 0 0 0;
+}
+
+.reviews-header {
+    -fx-padding: 0 0 20 0;
+}
+
+.btn-load-more {
+    -fx-padding: 12 0 12 0;
+    -fx-margin: 16 0 0 0;
+}
+
+.review-form-card {
+    -fx-padding: 24;
+}
+
+.review-form-title {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+}
+
+.review-form-subtitle {
+    -fx-padding: 4 0 20 0;
+}
+
+.star-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cfc4c6;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+}
+
+.star-btn:hover {
+    -fx-text-fill: #a93724;
+}
+
+.btn-submit-review {
+    -fx-pref-height: 46px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* ===================== */
+/* CART */
+/* ===================== */
+.cart-back-row {
+    -fx-padding: 28 32 4 32;
+}
+
+.cart-title {
+    -fx-padding: 4 32 20 32;
+}
+
+.cart-content {
+    -fx-padding: 0 32 32 32;
+}
+
+.cart-empty-state {
+    -fx-padding: 80 0 80 0;
+}
+
+.empty-state-icon {
+    -fx-font-size: 48px;
+    -fx-text-fill: #cfc4c6;
+}
+
+.empty-state-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 20px;
+    -fx-text-fill: #0a0708;
+}
+
+.empty-state-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #4c4547;
+}
+
+.cart-header-row {
+    -fx-padding: 0 16 10 16;
+    -fx-border-color: transparent transparent #eae1d8 transparent;
+    -fx-border-width: 0 0 0.5 0;
+}
+
+.cart-scroll {
+    -fx-max-height: 420px;
+}
+
+.cart-items-container {
+    -fx-padding: 12 0 0 0;
+}
+
+.summary-panel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.06), 20, 0, 0, 4);
+}
+
+.summary-title {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+    -fx-padding: 0 0 16 0;
+}
+
+.summary-row {
+    -fx-padding: 0 0 10 0;
+}
+
+.summary-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+.summary-value {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+}
+
+.summary-shipping {
+    -fx-text-fill: #004f54;
+}
+
+.summary-divider {
+    -fx-border-color: #cfc4c6;
+    -fx-border-width: 0.5 0 0 0;
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+    -fx-padding: 0;
+}
+
+.summary-total-row {
+    -fx-padding: 0 0 20 0;
+}
+
+.summary-total-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+}
+
+.summary-total-value {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #a93724;
+}
+
+.btn-checkout {
+    -fx-pref-height: 46px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.cart-shipping-hint {
+    -fx-padding: 12 0 0 0;
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+/* ===================== */
+/* CHECKOUT */
+/* ===================== */
+.checkout-subtitle {
+    -fx-padding: 4 0 24 0;
+}
+
+.checkout-section-title {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+    -fx-padding: 0 0 16 0;
+}
+
+.payment-option-selected {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 8;
+    -fx-padding: 14 16 14 16;
+    -fx-cursor: hand;
+}
+
+.payment-option-disabled {
+    -fx-background-color: #f6f6f6;
+    -fx-background-radius: 8;
+    -fx-padding: 14 16 14 16;
+    -fx-cursor: default;
+    -fx-opacity: 0.6;
+}
+
+.radio-jv {
+    -fx-padding: 0;
+}
+
+.payment-method-name {
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: #0a0708;
+}
+
+.payment-method-disabled-name {
+    -fx-text-fill: #4c4547;
+}
+
+.payment-method-desc {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+.payment-coming-soon {
+    -fx-font-size: 11px;
+    -fx-text-fill: #a93724;
+    -fx-font-style: italic;
+}
+
+.payment-badge {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.payment-badge-cod {
+    -fx-text-fill: #004f54;
+}
+
+.payment-badge-disabled {
+    -fx-text-fill: #7e7577;
+}
+
+.checkout-calc-title {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0 0 20 0;
+}
+
+.checkout-calc-row {
+    -fx-padding: 0 0 12 0;
+}
+
+.checkout-calc-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8d8687;
+}
+
+.checkout-calc-value {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.checkout-calc-shipping {
+    -fx-text-fill: #92d1d6;
+}
+
+.checkout-calc-divider {
+    -fx-border-color: #4c4547;
+    -fx-border-width: 0.5 0 0 0;
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+}
+
+.checkout-total-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8d8687;
+}
+
+.checkout-total-note {
+    -fx-font-size: 10px;
+    -fx-text-fill: #635d5e;
+    -fx-font-style: italic;
+}
+
+.checkout-total-value {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 26px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #ffffff;
+}
+
+.btn-place-order {
+    -fx-pref-height: 50px;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-margin: 20 0 0 0;
+}
+
+.checkout-terms {
+    -fx-font-size: 10px;
+    -fx-text-fill: #635d5e;
+    -fx-padding: 12 0 0 0;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.btn-return-cart {
+    -fx-padding: 12 0 0 0;
+}
+
+/* ===================== */
+/* MY ORDERS */
+/* ===================== */
+.my-orders-content {
+    -fx-padding: 28 32 32 32;
+}
+
+.filter-label {
+    -fx-padding: 0 0 4 0;
+    -fx-text-fill: #a93724;
+}
+
+.support-card {
+    -fx-margin: 16 0 0 0;
+    -fx-padding: 16;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+}
+
+.support-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0a0708;
+}
+
+.support-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+.btn-support {
+    -fx-background-color: #a93724;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8;
+    -fx-padding: 12 16 12 16;
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 40px;
+}
+
+.orders-page-title {
+    -fx-font-size: 28px;
+    -fx-padding: 0 0 4 0;
+}
+
+.orders-page-subtitle {
+    -fx-padding: 0 0 16 0;
+}
+
+.orders-table {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.orders-pagination {
+    -fx-padding: 12 0 0 0;
+}
+/* ADMIN PAGES & REMAINING LIGHT THEME CLASSES */
+.admin-page {
+    -fx-background-color: #fff8f3;
+    -fx-padding: 48 48 48 48;
+}
+
+.admin-header {
+    -fx-padding: 0 0 28 0;
+}
+
+.admin-page-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 36px;
+    -fx-text-fill: #0a0708;
+}
+
+.admin-page-subtitle {
+    -fx-font-family: "Inter";
+    -fx-font-weight: 500;
+    -fx-font-size: 16px;
+    -fx-text-fill: #4c4547;
+}
+
+.btn-admin-primary {
+    -fx-background-color: #231f20;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8px;
+    -fx-pref-height: 44px;
+    -fx-padding: 0 20 0 20;
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.admin-controls-row {
+    -fx-padding: 0 0 20 0;
+}
+
+.control-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4c4547;
+}
+
+.admin-combo {
+    -fx-pref-height: 32px;
+}
+
+.admin-table-container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12px;
+    -fx-padding: 0 0 20 0;
+}
+
+.admin-table {
+    -fx-pref-height: 440px;
+    -fx-background-color: transparent;
+}
+
+.admin-table-footer {
+    -fx-padding: 16 32 0 32;
+    -fx-border-color: #cfc4c626 transparent transparent transparent;
+    -fx-border-width: 0.5 0 0 0;
+}
+
+.pagination-label {
+    -fx-padding: 6 12 6 12;
+}
+
+.admin-stats-row {
+    -fx-padding: 0 0 20 0;
+}
+
+.stat-card-light {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.06), 20, 0, 0, 4);
+}
+
+.stat-card-accent {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.06), 20, 0, 0, 4);
+    -fx-border-left-color: #a93724;
+    -fx-border-left-width: 3;
+}
+
+.stat-label-spaced {
+    -fx-padding: 0 0 6 0;
+}
+
+.stat-value-accent {
+    -fx-text-fill: #a93724;
+}
+
+.stat-trend-row {
+    -fx-padding: 10 0 0 0;
+}
+
+.stat-trend-direction {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.stat-trend-value {
+    -fx-font-size: 10px;
+    -fx-text-fill: #004f54;
+    -fx-font-weight: bold;
+}
+
+.stat-trend-value-accent {
+    -fx-text-fill: #a93724;
+}
+
+.search-bar-admin {
+    -fx-pref-height: 42px;
+    -fx-pref-width: 220px;
+    -fx-padding: 10 16 10 42;
+}
+
+.search-icon-inline {
+    -fx-padding: 0 0 0 12;
+    -fx-font-size: 14px;
+}
+
+.filter-tabs-container {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 10;
+    -fx-padding: 4;
+    -fx-margin: 0 0 16 0;
+}
+
+.stat-card-dark {
+    -fx-background-color: #231f20;
+    -fx-background-radius: 12;
+    -fx-padding: 24;
+}
+
+.stat-card-dark-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8d8687;
+}
+
+.stat-card-dark-value {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #ffffff;
+}
+
+.modal-overlay {
+    -fx-background-color: rgba(10,7,8,0.4);
+}
+
+.admin-modal {
+    -fx-padding: 32;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.25), 40, 0, 0, 12);
+}
+
+.modal-header {
+    -fx-padding: 0 0 20 0;
+}
+
+.modal-order-id {
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+.modal-status-buttons {
+    -fx-padding: 0 0 20 0;
+}
+
+.btn-status-pending {
+    -fx-pref-height: 42px;
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 8;
+    -fx-font-family: "Inter";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.btn-status-paid {
+    -fx-pref-height: 42px;
+    -fx-background-color: #e8f5e9;
+    -fx-background-radius: 8;
+    -fx-font-family: "Inter";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.btn-status-shipped {
+    -fx-pref-height: 42px;
+    -fx-background-color: #e3f2fd;
+    -fx-background-radius: 8;
+    -fx-font-family: "Inter";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.btn-status-cancelled {
+    -fx-pref-height: 42px;
+    -fx-background-color: #ffebee;
+    -fx-background-radius: 8;
+    -fx-font-family: "Inter";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.form-label-top {
+    -fx-padding: 0 0 6 0;
+}
+
+.form-grid {
+    -fx-padding: 14 0 0 0;
+}
+
+.modal-actions {
+    -fx-padding: 20 0 0 0;
+}
+
+.admin-modal-delete {
+    -fx-padding: 28;
+    -fx-effect: dropshadow(gaussian, rgba(35,31,32,0.2), 30, 0, 0, 8);
+}
+
+.modal-delete-title {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+    -fx-padding: 0 0 12 0;
+}
+
+.btn-danger {
+    -fx-background-color: #ba1a1a;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-pref-height: 40px;
+    -fx-padding: 0 20 0 20;
+}
+
+.btn-filter-inventory {
+    -fx-pref-height: 42px;
+}
+
+.stat-card-restock {
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-background-color: #a93724;
+}
+
+.stat-card-restock-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(255,255,255,0.8);
+}
+
+.stat-card-restock-value {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 24px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #ffffff;
+}
+
+.stat-card-restock-note {
+    -fx-font-size: 11px;
+    -fx-text-fill: rgba(255,255,255,0.7);
+    -fx-font-style: italic;
+}
+
+.breadcrumb {
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+.breadcrumb-active {
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-text-fill: #a93724;
+    -fx-font-weight: bold;
+}
+
+.dashboard-content {
+    -fx-background-color: transparent;
+}
+
+.dashboard-stats {
+    -fx-hgap: 32.0;
+    -fx-vgap: 0.0;
+}
+
+.stat-icon-bg {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+}
+
+.stat-icon-bg-orders {
+    -fx-background-color: #f6ece3;
+}
+
+.stat-icon-bg-warning {
+    -fx-background-color: #ffebee;
+}
+
+.stat-icon-bg-users {
+    -fx-background-color: #e8f5e9;
+}
+
+.stat-icon-svg {
+    -fx-fill: #0a0708;
+}
+
+.stat-value-large {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 28px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #0a0708;
+}
+
+.dashboard-recent-orders {
+    -fx-spacing: 16.0;
+}
+
+.dashboard-table {
+    -fx-pref-height: 280px;
+}
+
+.report-period-badge {
+    -fx-background-color: #f6ece3;
+    -fx-background-radius: 8;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+}
+
+.report-period-days {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.report-period-text {
+    -fx-text-fill: #0a0708;
+}
+
+.reports-charts-row {
+    -fx-padding: 0 0 20 0;
+}
+
+.reports-chart-card {
+    -fx-spacing: 0;
+}
+
+.chart-title {
+    -fx-padding: 0 0 16 0;
+}
+
+.chart-axis-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.orders-chart {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.reports-bestsellers-card {
+    -fx-spacing: 0;
+}
+
+.reports-bestsellers-header {
+    -fx-padding: 0 0 16 0;
+}
+
+.btn-see-all {
+    -fx-text-fill: #a93724;
+    -fx-font-size: 11px;
+}
+
+.reports-customers-card {
+    -fx-spacing: 0;
+}
+
+.reports-customers-header {
+    -fx-padding: 0 0 16 0;
+}
+
+.btn-export {
+    -fx-pref-height: 36px;
+    -fx-font-size: 11px;
+}
+
+.reports-customers-table {
+    -fx-pref-height: 280px;
+}
+
+.confirmation-page {
+    -fx-background-color: #fff8f3;
+    -fx-padding: 48 32 48 32;
+}
+
+.success-icon-bg {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 50;
+    -fx-padding: 32;
+}
+
+.success-icon-text {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #004f54;
+}
+
+.success-title {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 24px;
+    -fx-text-fill: #0a0708;
+    -fx-padding: 20 0 4 0;
+}
+
+.order-id-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #4c4547;
+}
+
+.order-id-value {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 900;
+    -fx-font-size: 16px;
+    -fx-text-fill: #0a0708;
+}
+
+.confirmation-details {
+    -fx-padding: 28 0 0 0;
+    -fx-max-width: 680px;
+}
+
+.confirmation-card {
+    -fx-spacing: 4;
+}
+
+.confirmation-card-alt {
+    -fx-spacing: 4;
+}
+
+.confirmation-customer-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+    -fx-font-size: 13px;
+}
+
+.confirmation-delivery-note {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+.confirmation-delivery-time {
+    -fx-font-size: 11px;
+    -fx-text-fill: #7e7577;
+    -fx-font-style: italic;
+}
+
+.confirmation-payment-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: #0a0708;
+    -fx-font-size: 13px;
+}
+
+.confirmation-payment-status {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4c4547;
+}
+
+.confirmation-summary {
+    -fx-spacing: 0;
+}
+
+.confirmation-summary-title {
+    -fx-padding: 0 0 14 0;
+}
+
+.confirmation-divider {
+    -fx-border-color: #eae1d8;
+    -fx-border-width: 0.5 0 0 0;
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+}
+
+.confirmation-shipping-row {
+    -fx-padding: 4 0 0 0;
+}
+
+.confirmation-total-row {
+    -fx-padding: 10 0 0 0;
+}
+
+.confirmation-actions {
+    -fx-padding: 28 0 0 0;
+}
+
+.btn-view-orders {
+    -fx-pref-height: 46px;
+    -fx-padding: 0 28 0 28;
+}
+
+.btn-continue-shopping {
+    -fx-pref-height: 46px;
+    -fx-padding: 0 28 0 28;
+}
+
+.nav-link {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-text-fill: #4c4547;
+    -fx-cursor: hand;
+}
+
+.nav-link-active {
+    -fx-alignment: CENTER;
+    -fx-spacing: 4.0;
+}
+
+.nav-link-text-active {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-text-fill: #a93724;
+    -fx-cursor: hand;
+}
+
+.nav-link-underline {
+    -fx-background-color: #a93724;
+    -fx-pref-height: 2.0;
+}
+
+.icon-btn {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.icon-svg {
+    -fx-fill: #0a0708;
+}
+
+.user-profile {
+    -fx-cursor: hand;
+}
+
+.user-name {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #0a0708;
+}
+
+.user-role {
+    -fx-font-family: "Inter";
+    -fx-font-size: 10px;
+    -fx-text-fill: #4c4547;
+    -fx-opacity: 0.8;
+}
+
+.user-avatar-container {
+    -fx-background-radius: 20px;
+    -fx-border-color: #f0e7de;
+    -fx-border-radius: 20px;
+    -fx-border-width: 2px;
+}
+
+.sidebar-icon {
+    -fx-fill: #4c4547;
+}
+
+.sidebar-icon-active {
+    -fx-fill: #a93724;
+}
+
+.sidebar-item-label {
+    -fx-font-family: "Inter";
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+    -fx-text-fill: #4c4547;
+}
+
+.sidebar-item-label-active {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #a93724;
+}
+
+.sort-dropdown-mock {
+    -fx-background-color: #fbf2e9;
+    -fx-background-radius: 12px;
+    -fx-padding: 16 24 16 24;
+    -fx-cursor: hand;
+}
+
+.sort-dropdown-text {
+    -fx-font-family: "Inter";
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1f1b16;
+}
+
+.sort-dropdown-icon {
+    -fx-fill: #7e7577;
+}
+
+.btn-filters {
+    -fx-background-color: #0a0708;
+    -fx-background-radius: 12px;
+    -fx-padding: 16 24 16 24;
+    -fx-cursor: hand;
+}
+
+.btn-filters-icon {
+    -fx-fill: #ffffff;
+}
+
+.btn-filters-text {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}

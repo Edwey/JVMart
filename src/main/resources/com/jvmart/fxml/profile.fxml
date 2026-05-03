@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jvmart.controllers.ProfileController"
+            fitToWidth="true"
+            stylesheets="@../css/jvmart-dark.css"
+            styleClass="app-root transparent-scroll">
+
+    <VBox spacing="24">
+        <padding>
+            <Insets top="48" right="48" bottom="48" left="48"/>
+        </padding>
+
+        <!-- Header with Back and Logout -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <VBox HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="Profile Settings" styleClass="page-title"/>
+                <Label text="Manage your account information and security." styleClass="page-subtitle"/>
+            </VBox>
+            <Button text="Logout" styleClass="btn-logout" onAction="#onLogout"/>
+            <Button text="← Back" styleClass="btn-ghost" onAction="#onBack"/>
+        </HBox>
+
+        <!-- Profile Avatar Section -->
+        <HBox alignment="CENTER" spacing="24" styleClass="card">
+            <padding>
+                <Insets top="32" right="32" bottom="32" left="32"/>
+            </padding>
+            <StackPane styleClass="avatar-circle">
+                <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                         styleClass="avatar-icon" scaleX="2" scaleY="2"/>
+            </StackPane>
+            <VBox spacing="8">
+                <Label fx:id="profileNameLabel" text="User Name" styleClass="profile-name"/>
+                <Label fx:id="profileRoleLabel" text="ROLE" styleClass="role-badge"/>
+            </VBox>
+        </HBox>
+
+        <!-- Account Information Card -->
+        <VBox spacing="16" styleClass="card">
+            <padding>
+                <Insets top="32" right="32" bottom="32" left="32"/>
+            </padding>
+            
+            <Label text="ACCOUNT INFORMATION" styleClass="section-label"/>
+            
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50"/>
+                    <ColumnConstraints percentWidth="50"/>
+                </columnConstraints>
+
+                <VBox GridPane.columnIndex="0" spacing="6">
+                    <Label text="FULL NAME" styleClass="field-label"/>
+                    <TextField fx:id="fullNameField" promptText="Enter your full name" styleClass="text-field-jv"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1" spacing="6">
+                    <Label text="EMAIL ADDRESS" styleClass="field-label"/>
+                    <TextField fx:id="emailField" promptText="Enter your email" styleClass="text-field-jv"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="6">
+                    <Label text="USERNAME" styleClass="field-label"/>
+                    <TextField fx:id="usernameField" promptText="Choose a username" styleClass="text-field-jv"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="6">
+                    <Label text="PHONE (OPTIONAL)" styleClass="field-label"/>
+                    <TextField fx:id="phoneField" promptText="+233 XX XXX XXXX" styleClass="text-field-jv"/>
+                </VBox>
+            </GridPane>
+
+            <Label fx:id="profileError" text="" styleClass="error-label" visible="false" managed="false"/>
+
+            <HBox alignment="CENTER_RIGHT">
+                <Button text="Save Changes" styleClass="btn-primary" onAction="#onSave"/>
+            </HBox>
+        </VBox>
+
+        <!-- Security Card -->
+        <VBox spacing="16" styleClass="card">
+            <padding>
+                <Insets top="32" right="32" bottom="32" left="32"/>
+            </padding>
+            
+            <Label text="SECURITY" styleClass="section-label"/>
+            
+            <VBox spacing="16">
+                <VBox spacing="6">
+                    <Label text="CURRENT PASSWORD" styleClass="field-label"/>
+                    <PasswordField fx:id="currentPasswordField" promptText="Enter current password" styleClass="text-field-jv"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="NEW PASSWORD" styleClass="field-label"/>
+                    <PasswordField fx:id="newPasswordField" promptText="Enter new password" styleClass="text-field-jv"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="CONFIRM NEW PASSWORD" styleClass="field-label"/>
+                    <PasswordField fx:id="confirmPasswordField" promptText="Confirm new password" styleClass="text-field-jv"/>
+                </VBox>
+            </VBox>
+
+            <Label fx:id="securityError" text="" styleClass="error-label" visible="false" managed="false"/>
+
+            <HBox alignment="CENTER_RIGHT">
+                <Button text="Update Password" styleClass="btn-secondary" onAction="#onChangePassword"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

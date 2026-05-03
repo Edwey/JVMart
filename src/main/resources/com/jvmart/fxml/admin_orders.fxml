@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.jvmart.controllers.AdminOrdersController"
+           stylesheets="@../css/jvmart-dark.css"
+           styleClass="app-root">
+
+    <VBox spacing="0" styleClass="admin-page">
+        <padding>
+            <Insets top="48" right="48" bottom="48" left="48"/>
+        </padding>
+
+        <!-- Header + search -->
+        <HBox alignment="BASELINE_LEFT" styleClass="admin-header">
+            <VBox HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="Order Archive" styleClass="admin-page-title"/>
+                <Label text="Manage customer transactions and fulfilment." styleClass="admin-page-subtitle"/>
+            </VBox>
+            <StackPane>
+                <TextField fx:id="searchField" promptText="Search orders..." styleClass="search-bar search-bar-admin" onKeyReleased="#onSearch"/>
+                <Label text="🔍" styleClass="search-icon-label"/>
+            </StackPane>
+        </HBox>
+
+        <!-- Filter tabs -->
+        <HBox spacing="4" styleClass="filter-tabs-container">
+            <HBox.margin><Insets bottom="16"/></HBox.margin>
+            <Button fx:id="tabAll"       text="All Orders" styleClass="filter-tab-active" onAction="#filterAll"/>
+            <Button fx:id="tabPending"   text="Pending"    styleClass="filter-tab"        onAction="#filterPending"/>
+            <Button fx:id="tabPaid"      text="Paid"       styleClass="filter-tab"        onAction="#filterPaid"/>
+            <Button fx:id="tabShipped"   text="Shipped"    styleClass="filter-tab"        onAction="#filterShipped"/>
+            <Button fx:id="tabCancelled" text="Cancelled"  styleClass="filter-tab"        onAction="#filterCancelled"/>
+        </HBox>
+
+        <!-- Table -->
+        <VBox spacing="0" VBox.vgrow="ALWAYS" styleClass="admin-table-container">
+            <TableView fx:id="ordersTable" VBox.vgrow="ALWAYS" styleClass="table-view admin-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ORDER ID" prefWidth="110"/>
+                    <TableColumn fx:id="colCustomer" text="CUSTOMER" prefWidth="180"/>
+                    <TableColumn fx:id="colDate" text="DATE" prefWidth="170"/>
+                    <TableColumn fx:id="colTotal" text="TOTAL" prefWidth="130"/>
+                    <TableColumn fx:id="colStatus" text="STATUS" prefWidth="120"/>
+                    <TableColumn fx:id="colActions" text="ACTIONS" prefWidth="120"/>
+                </columns>
+            </TableView>
+            <HBox alignment="CENTER_RIGHT" spacing="8" styleClass="admin-table-footer">
+                <Label fx:id="showingLabel" text="Showing 1–10 of 0 orders" styleClass="label-muted" HBox.hgrow="ALWAYS"/>
+                <Button text="‹" styleClass="pagination-btn" onAction="#prevPage"/>
+                <Label fx:id="currentPageLabel" text="1 / 1" styleClass="pagination-btn pagination-label"/>
+                <Button text="›" styleClass="pagination-btn" onAction="#nextPage"/>
+            </HBox>
+        </VBox>
+
+        <!-- Quick stats row -->
+        <GridPane hgap="16" vgap="0" styleClass="admin-stats-row">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33"/>
+                <ColumnConstraints percentWidth="33"/>
+                <ColumnConstraints percentWidth="34"/>
+            </columnConstraints>
+            <VBox GridPane.columnIndex="0" styleClass="stat-card stat-card-light">
+                <Label text="TOTAL REVENUE" styleClass="stat-label"/>
+                <Label fx:id="revenueLabel" text="GH₵ 0" styleClass="stat-value"/>
+            </VBox>
+            <VBox GridPane.columnIndex="1" styleClass="stat-card stat-card-light">
+                <Label text="PENDING FULFILMENT" styleClass="stat-label"/>
+                <HBox spacing="8" alignment="BASELINE_LEFT">
+                    <Label fx:id="pendingLabel" text="0" styleClass="stat-value"/>
+                    <Label text="orders need attention" styleClass="label-muted"/>
+                </HBox>
+            </VBox>
+            <VBox GridPane.columnIndex="2" styleClass="stat-card stat-card-dark">
+                <Label text="AVG. ORDER VALUE" styleClass="stat-card-dark-label"/>
+                <Label fx:id="avgOrderLabel" text="GH₵ 0" styleClass="stat-card-dark-value"/>
+            </VBox>
+        </GridPane>
+    </VBox>
+
+    <!-- Update Order Status Modal Overlay -->
+    <StackPane fx:id="statusModalOverlay" visible="false" managed="false" styleClass="modal-overlay" pickOnBounds="false">
+        <VBox styleClass="card admin-modal" maxWidth="420" spacing="0">
+            <HBox alignment="CENTER_LEFT" styleClass="modal-header">
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label text="Update Order Status" styleClass="section-title"/>
+                    <Label fx:id="statusModalOrderId" text="Order #JV-0001" styleClass="modal-order-id"/>
+                </VBox>
+                <Button text="✕" styleClass="btn-ghost" onAction="#closeStatusModal"/>
+            </HBox>
+
+            <Label text="SELECT NEW STATUS" styleClass="form-label form-label-top"/>
+            <VBox spacing="8" styleClass="modal-status-buttons">
+                <Button fx:id="statusPending" text="Pending" styleClass="btn-status-pending" maxWidth="Infinity" onAction="#setStatusPending"/>
+                <Button fx:id="statusPaid" text="Paid" styleClass="btn-status-paid" maxWidth="Infinity" onAction="#setStatusPaid"/>
+                <Button fx:id="statusShipped" text="Shipped" styleClass="btn-status-shipped" maxWidth="Infinity" onAction="#setStatusShipped"/>
+                <Button fx:id="statusCancelled" text="Cancelled" styleClass="btn-status-cancelled" maxWidth="Infinity" onAction="#setStatusCancelled"/>
+            </VBox>
+
+            <HBox spacing="12" styleClass="modal-actions" alignment="CENTER_RIGHT">
+                <Button text="Cancel" styleClass="btn-outline" onAction="#closeStatusModal"/>
+            </HBox>
+        </VBox>
+    </StackPane>
+</StackPane>

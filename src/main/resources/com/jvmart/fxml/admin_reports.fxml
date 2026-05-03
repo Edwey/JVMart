@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jvmart.controllers.AdminReportsController"
+            stylesheets="@../css/jvmart-dark.css"
+            fitToWidth="true"
+            styleClass="app-root transparent-scroll">
+
+    <VBox spacing="0" styleClass="page-content">
+        <padding>
+            <Insets top="48" right="48" bottom="48" left="48"/>
+        </padding>
+        
+        <HBox alignment="BASELINE_LEFT" styleClass="admin-header">
+            <VBox HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="Financial Overview" styleClass="admin-page-title"/>
+                <Label text="In-depth analysis of JVMart sales performance." styleClass="admin-page-subtitle"/>
+            </VBox>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <HBox spacing="8" alignment="CENTER" styleClass="report-period-badge">
+                    <Label text="30d" styleClass="report-period-days"/>
+                    <Label text="Last 30 Days" styleClass="report-period-text"/>
+                </HBox>
+            </HBox>
+        </HBox>
+
+        <GridPane hgap="16" vgap="0" styleClass="admin-stats-row">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+            </columnConstraints>
+            <VBox GridPane.columnIndex="0" styleClass="stat-card stat-card-light" spacing="0">
+                <Label text="TOTAL REVENUE" styleClass="stat-label stat-label-spaced"/>
+                <Label fx:id="totalRevLabel" text="GHS 0" styleClass="stat-value"/>
+                <HBox spacing="4" alignment="CENTER_LEFT" styleClass="stat-trend-row">
+                    <Label text="Up" styleClass="stat-trend-direction"/>
+                    <Label fx:id="revGrowth" text="+0% from last year" styleClass="stat-trend-value"/>
+                </HBox>
+            </VBox>
+            <VBox GridPane.columnIndex="1" styleClass="stat-card stat-card-accent" spacing="0">
+                <Label text="REVENUE THIS MONTH" styleClass="stat-label stat-label-spaced"/>
+                <Label fx:id="monthRevLabel" text="GHS 0" styleClass="stat-value stat-value-accent"/>
+            </VBox>
+            <VBox GridPane.columnIndex="2" styleClass="stat-card stat-card-light" spacing="0">
+                <Label text="TOTAL ORDERS" styleClass="stat-label stat-label-spaced"/>
+                <Label fx:id="totalOrdersLabel" text="0" styleClass="stat-value"/>
+                <HBox spacing="4" alignment="CENTER_LEFT" styleClass="stat-trend-row">
+                    <Label text="New" styleClass="stat-trend-direction"/>
+                    <Label fx:id="newTodayLabel" text="0 new today" styleClass="stat-trend-value stat-trend-value-accent"/>
+                </HBox>
+            </VBox>
+            <VBox GridPane.columnIndex="3" styleClass="stat-card stat-card-light" spacing="0">
+                <Label text="AVG. ORDER VALUE" styleClass="stat-label stat-label-spaced"/>
+                <Label fx:id="avgValueLabel" text="GHS 0" styleClass="stat-value"/>
+            </VBox>
+        </GridPane>
+
+        <GridPane hgap="16" vgap="0" styleClass="reports-charts-row">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="60"/>
+                <ColumnConstraints percentWidth="40"/>
+            </columnConstraints>
+
+            <VBox GridPane.columnIndex="0" styleClass="card reports-chart-card" spacing="0">
+                <Label text="Orders Per Day - Last 7 Days" styleClass="section-title chart-title"/>
+                <BarChart fx:id="ordersChart" prefHeight="300" animated="false" legendVisible="false" styleClass="orders-chart">
+                    <xAxis>
+                        <CategoryAxis label="Date" side="BOTTOM" styleClass="chart-axis-label"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Number of Orders" side="LEFT" tickUnit="1" minorTickCount="0" styleClass="chart-axis-label"/>
+                    </yAxis>
+                </BarChart>
+            </VBox>
+
+            <VBox GridPane.columnIndex="1" styleClass="card reports-bestsellers-card" spacing="0">
+                <HBox alignment="CENTER_LEFT" styleClass="reports-bestsellers-header">
+                    <Label text="Best Sellers" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                    <Button text="View All ->" styleClass="btn-ghost btn-see-all" onAction="#onViewAllProducts"/>
+                </HBox>
+                <VBox fx:id="bestSellersList" spacing="14"/>
+            </VBox>
+        </GridPane>
+
+        <VBox styleClass="card reports-customers-card" spacing="0">
+            <HBox alignment="CENTER_LEFT" styleClass="reports-customers-header">
+                <VBox HBox.hgrow="ALWAYS" spacing="2">
+                    <Label text="Active Customers" styleClass="section-title"/>
+                    <Label text="HIGH-VALUE CLIENT SEGMENT" styleClass="label-tiny"/>
+                </VBox>
+                <Button text="Export List" styleClass="btn-outline btn-export" onAction="#exportCustomers"/>
+            </HBox>
+            <TableView fx:id="customersTable" prefHeight="280" styleClass="table-view reports-customers-table">
+                <columns>
+                    <TableColumn fx:id="colCustomer" text="CUSTOMER" prefWidth="220"/>
+                    <TableColumn fx:id="colStatus" text="STATUS" prefWidth="100"/>
+                    <TableColumn fx:id="colLtv" text="LIFETIME VALUE" prefWidth="140"/>
+                    <TableColumn fx:id="colLast" text="LAST PURCHASE" prefWidth="140"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </VBox>
+</ScrollPane>

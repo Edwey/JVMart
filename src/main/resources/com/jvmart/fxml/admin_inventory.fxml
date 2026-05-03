@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.jvmart.controllers.AdminInventoryController"
+      stylesheets="@../css/jvmart-dark.css"
+      spacing="0" styleClass="app-root admin-page">
+
+    <!-- Header -->
+    <HBox alignment="BASELINE_LEFT" styleClass="admin-header">
+        <VBox HBox.hgrow="ALWAYS" spacing="4">
+            <Label text="Inventory Management" styleClass="admin-page-title"/>
+            <Label text="Real-time stock monitoring and replenishment." styleClass="admin-page-subtitle"/>
+        </VBox>
+        <Button text="⚙  Filter" styleClass="btn-outline btn-filter-inventory" onAction="#showFilterMenu"/>
+    </HBox>
+
+    <!-- Summary tiles -->
+    <GridPane hgap="16" vgap="0" styleClass="admin-stats-row">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="67"/>
+            <ColumnConstraints percentWidth="33"/>
+        </columnConstraints>
+        <VBox GridPane.columnIndex="0" styleClass="stat-card stat-card-light" spacing="4">
+            <Label text="TOTAL STOCK VALUE" styleClass="stat-label"/>
+            <Label fx:id="stockValueLabel" text="GH₵ 0.00" styleClass="stat-value"/>
+        </VBox>
+        <VBox GridPane.columnIndex="1" styleClass="stat-card stat-card-restock">
+            <Label text="ITEMS FOR RESTOCK" styleClass="stat-card-restock-label"/>
+            <Label fx:id="restockLabel" text="0 SKUs" styleClass="stat-card-restock-value"/>
+            <Label text="Action required" styleClass="stat-card-restock-note"/>
+        </VBox>
+    </GridPane>
+
+    <!-- Inventory table -->
+    <VBox spacing="0" VBox.vgrow="ALWAYS" styleClass="admin-table-container">
+        <TableView fx:id="inventoryTable" VBox.vgrow="ALWAYS" styleClass="table-view admin-table" onMouseClicked="#onRowClick">
+            <columns>
+                <TableColumn fx:id="colProduct" text="PRODUCT" prefWidth="240"/>
+                <TableColumn fx:id="colCategory" text="CATEGORY" prefWidth="150"/>
+                <TableColumn fx:id="colStock" text="STOCK" prefWidth="100"/>
+                <TableColumn fx:id="colStatus" text="STATUS" prefWidth="130"/>
+                <TableColumn fx:id="colSave" text="ACTIONS" prefWidth="340"/>
+            </columns>
+        </TableView>
+
+        <!-- Pagination footer -->
+        <HBox alignment="CENTER_RIGHT" spacing="8" styleClass="admin-table-footer">
+            <Label fx:id="showingLabel" text="Showing 1–10 of 0 items" styleClass="label-muted" HBox.hgrow="ALWAYS"/>
+            <Button text="Previous" styleClass="pagination-btn" onAction="#prevPage"/>
+            <Button text="Next"     styleClass="pagination-btn-active" onAction="#nextPage"/>
+        </HBox>
+    </VBox>
+</VBox>

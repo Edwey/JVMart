@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jvmart.controllers.CheckoutController"
+            stylesheets="@../css/jvmart-dark.css"
+            fitToWidth="true"
+            styleClass="app-root">
+
+    <VBox spacing="0" styleClass="page-content">
+        <padding>
+            <Insets top="28" right="32" bottom="40" left="32"/>
+        </padding>
+        
+        <Label text="Checkout" styleClass="page-title"/>
+        <Label text="Review your selection and choose payment." styleClass="page-subtitle checkout-subtitle"/>
+
+        <FlowPane hgap="24" vgap="24" prefWrapLength="980" alignment="TOP_LEFT">
+            <VBox spacing="20" HBox.hgrow="ALWAYS">
+                <VBox styleClass="card" spacing="0">
+                    <Label text="Order Summary" styleClass="checkout-section-title"/>
+                    <VBox fx:id="checkoutItemsList" spacing="0"/>
+                </VBox>
+
+                <VBox styleClass="card" spacing="0">
+                    <Label text="Payment Method" styleClass="checkout-section-title"/>
+
+                    <VBox styleClass="payment-option-selected">
+                        <HBox spacing="14" alignment="CENTER_LEFT">
+                            <RadioButton fx:id="cashRadio" selected="true" styleClass="radio-jv"/>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Cash on delivery" styleClass="payment-method-name"/>
+                                <Label text="Pay in person upon delivery" styleClass="payment-method-desc"/>
+                            </VBox>
+                            <Label text="COD" styleClass="payment-badge payment-badge-cod"/>
+                        </HBox>
+                    </VBox>
+
+                    <VBox styleClass="payment-option-disabled">
+                        <VBox.margin><Insets top="10"/></VBox.margin>
+                        <HBox spacing="14" alignment="CENTER_LEFT">
+                            <RadioButton disable="true" styleClass="radio-jv"/>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Credit / Debit Card" styleClass="payment-method-name payment-method-disabled-name"/>
+                                <Label text="Coming Soon" styleClass="payment-coming-soon"/>
+                            </VBox>
+                            <Label text="CARD" styleClass="payment-badge payment-badge-disabled"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <VBox styleClass="card-dark" spacing="0" prefWidth="280" maxWidth="300">
+                <Label text="Order Calculation" styleClass="checkout-calc-title"/>
+
+                <HBox styleClass="checkout-calc-row">
+                    <Label text="SUBTOTAL" styleClass="checkout-calc-label" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="checkoutSubtotal" text="GHS 0.00" styleClass="checkout-calc-value"/>
+                </HBox>
+                <HBox styleClass="checkout-calc-row">
+                    <Label text="HANDLING" styleClass="checkout-calc-label" HBox.hgrow="ALWAYS"/>
+                    <Label text="GHS 0.00" styleClass="checkout-calc-value"/>
+                </HBox>
+                <HBox styleClass="checkout-calc-row">
+                    <Label text="SHIPPING" styleClass="checkout-calc-label" HBox.hgrow="ALWAYS"/>
+                    <Label text="Free" styleClass="checkout-calc-value checkout-calc-shipping"/>
+                </HBox>
+
+                <Pane styleClass="checkout-calc-divider">
+                    <VBox.margin><Insets top="4" bottom="16"/></VBox.margin>
+                </Pane>
+
+                <HBox alignment="BASELINE_LEFT">
+                    <VBox HBox.hgrow="ALWAYS" spacing="2">
+                        <Label text="TOTAL AMOUNT" styleClass="checkout-total-label"/>
+                        <Label text="(Tax inclusive)" styleClass="checkout-total-note"/>
+                    </VBox>
+                    <Label fx:id="checkoutTotal" text="GHS 0.00" styleClass="checkout-total-value"/>
+                </HBox>
+
+                <Button fx:id="placeOrderBtn" text="Place order" styleClass="btn-secondary btn-full btn-place-order" onAction="#placeOrder">
+                    <VBox.margin><Insets top="20"/></VBox.margin>
+                </Button>
+
+                <Label text="By placing this order you agree to our Terms of Service." styleClass="checkout-terms" wrapText="true" alignment="CENTER"/>
+            </VBox>
+        </FlowPane>
+
+        <Button text="<- Return to cart" styleClass="btn-ghost btn-return-cart" onAction="#returnToCart">
+            <VBox.margin><Insets top="12"/></VBox.margin>
+        </Button>
+    </VBox>
+</ScrollPane>

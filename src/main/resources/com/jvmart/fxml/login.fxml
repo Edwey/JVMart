@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane styleClass="app-root" stylesheets="@../css/jvmart-dark.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jvmart.controllers.LoginController">
+    
+    <!-- Theme Toggle Button -->
+    <Button onAction="#onToggleTheme" styleClass="btn-theme" text="Theme" StackPane.alignment="TOP_RIGHT">
+        <StackPane.margin>
+            <Insets right="24" top="24" />
+        </StackPane.margin>
+    </Button>
+
+    <!-- Main Login Card -->
+    <HBox alignment="CENTER" maxHeight="560" maxWidth="900" styleClass="login-card">
+
+        <!-- Left Dark Branding Panel -->
+        <VBox prefWidth="340" spacing="0" styleClass="login-panel-dark">
+            <VBox.margin>
+                <Insets top="0" />
+            </VBox.margin>
+            <Label styleClass="login-brand-dark" text="JVMart" />
+            <Label styleClass="login-subtitle-dark" text="Editorial Archive v.1" />
+            
+            <Region VBox.vgrow="ALWAYS" />
+            
+            <Label maxWidth="260" styleClass="login-quote" text="&quot;Curating the extraordinary from the everyday.&quot;" wrapText="true" />
+            <Label styleClass="login-quote-cite" text="Archive Manifest 01" />
+        </VBox>
+
+        <!-- Right Form Panel -->
+        <VBox prefWidth="460" spacing="0" styleClass="login-form-panel">
+            <VBox alignment="CENTER" spacing="8" styleClass="login-header">
+                <Label styleClass="login-title" text="J V M A R T" />
+                <Label styleClass="login-subtitle" text="Sign in to continue" />
+            </VBox>
+
+            <!-- Username -->
+            <Label styleClass="form-label" text="U S E R N A M E" />
+            <TextField fx:id="usernameField" promptText="Enter your username" />
+            <Label fx:id="usernameError" managed="false" styleClass="form-error-label" visible="false" />
+
+            <!-- Password -->
+            <HBox alignment="BOTTOM_LEFT" styleClass="form-label-row">
+                <Label styleClass="form-label" text="P A S S W O R D" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#onForgotPassword" styleClass="btn-forgot" text="FORGOT?" />
+            </HBox>
+            <PasswordField fx:id="passwordField" promptText="Enter your password" />
+            <Label fx:id="passwordError" managed="false" styleClass="form-error-label" visible="false" />
+
+            <!-- Global Error -->
+            <Label fx:id="loginError" managed="false" styleClass="form-error-label" text="Invalid username or password" visible="false">
+                <VBox.margin>
+                    <Insets top="8" />
+                </VBox.margin>
+            </Label>
+
+            <!-- Sign in button -->
+            <Button fx:id="signInBtn" onAction="#onLogin" text="Sign in">
+                <styleClass>
+                    <String fx:value="btn-primary" />
+                    <String fx:value="btn-full" />
+                </styleClass>
+                <VBox.margin>
+                    <Insets top="16" />
+                </VBox.margin>
+            </Button>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Footer -->
+            <HBox alignment="CENTER" spacing="4" styleClass="login-footer">
+                <Label styleClass="login-footer-text" text="Don't have an account?" />
+                <Button onAction="#onRegister" styleClass="btn-link" text="Register" />
+            </HBox>
+        </VBox>
+    </HBox>
+</StackPane>

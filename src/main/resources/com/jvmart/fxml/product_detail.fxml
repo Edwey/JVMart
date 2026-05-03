@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jvmart.controllers.ProductDetailController"
+            stylesheets="@../css/jvmart-dark.css"
+            fitToWidth="true"
+            styleClass="app-root">
+
+    <VBox spacing="0" styleClass="page-content">
+        <padding>
+            <Insets top="24" right="32" bottom="40" left="32"/>
+        </padding>
+        
+        <Button text="← Back to Products" styleClass="btn-ghost" onAction="#goBack"/>
+
+        <HBox spacing="48" styleClass="product-detail-section" alignment="TOP_LEFT">
+            <VBox spacing="12" prefWidth="420">
+                <ImageView fx:id="mainImage" fitWidth="420" fitHeight="480" preserveRatio="false" styleClass="product-main-image"/>
+                <HBox spacing="10">
+                    <ImageView fx:id="thumb1" fitWidth="90" fitHeight="90" styleClass="thumb-selected" onMouseClicked="#selectThumb1"/>
+                    <ImageView fx:id="thumb2" fitWidth="90" fitHeight="90" styleClass="thumb-normal" onMouseClicked="#selectThumb2"/>
+                    <ImageView fx:id="thumb3" fitWidth="90" fitHeight="90" styleClass="thumb-normal" onMouseClicked="#selectThumb3"/>
+                    <ImageView fx:id="thumb4" fitWidth="90" fitHeight="90" styleClass="thumb-normal" onMouseClicked="#selectThumb4"/>
+                </HBox>
+            </VBox>
+
+            <VBox spacing="0" HBox.hgrow="ALWAYS" maxWidth="400">
+                <Label fx:id="categoryLabel" text="Electronics" styleClass="product-category"/>
+                <Label fx:id="productName" text="Product Name" styleClass="product-title" wrapText="true"/>
+
+                <HBox spacing="8" alignment="CENTER_LEFT" styleClass="reviews-row">
+                    <HBox fx:id="starsRow" spacing="2"/>
+                    <Label fx:id="reviewCount" text="0 Reviews" styleClass="label-muted"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="BASELINE_LEFT">
+                    <Label fx:id="priceLabel" text="GHS 0.00" styleClass="product-price"/>
+                    <Label fx:id="originalPrice" text="" styleClass="label-muted label-strikethrough" visible="false" managed="false"/>
+                </HBox>
+
+                <Label text="DESCRIPTION" styleClass="form-label"/>
+                <Label fx:id="descLabel" text="" styleClass="label-muted product-description" wrapText="true"/>
+
+                <HBox spacing="0" alignment="CENTER_LEFT" styleClass="stock-qty-row">
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="AVAILABILITY" styleClass="form-label"/>
+                        <Label fx:id="stockLabel" text="In stock" styleClass="product-stock"/>
+                    </VBox>
+                    <HBox spacing="0" alignment="CENTER" styleClass="qty-box">
+                        <Button text="-" styleClass="qty-btn" onAction="#decreaseQty"/>
+                        <Label fx:id="qtyLabel" text="1" styleClass="qty-label"/>
+                        <Button text="+" styleClass="qty-btn" onAction="#increaseQty"/>
+                    </HBox>
+                </HBox>
+
+                <HBox spacing="10" styleClass="action-buttons-row" alignment="CENTER_LEFT">
+                    <Button fx:id="addToCartBtn" text="Add to cart" styleClass="btn-primary btn-add-cart" onAction="#addToCart"/>
+                    <Button text="Save" styleClass="btn-outline btn-wishlist" onAction="#toggleWishlist"/>
+                </HBox>
+
+                <Separator styleClass="separator-jv"/>
+                <GridPane hgap="24" vgap="8" styleClass="specs-grid">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50"/>
+                        <ColumnConstraints percentWidth="50"/>
+                    </columnConstraints>
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="2">
+                        <Label fx:id="spec1Label" text="WEIGHT" styleClass="spec-label"/>
+                        <Label fx:id="spec1Value" text="-" styleClass="spec-value"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="2">
+                        <Label fx:id="spec2Label" text="CAPACITY" styleClass="spec-label"/>
+                        <Label fx:id="spec2Value" text="-" styleClass="spec-value"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="2">
+                        <Label fx:id="spec3Label" text="VOLTAGE" styleClass="spec-label"/>
+                        <Label fx:id="spec3Value" text="-" styleClass="spec-value"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="2">
+                        <Label fx:id="spec4Label" text="FINISH" styleClass="spec-label"/>
+                        <Label fx:id="spec4Value" text="-" styleClass="spec-value"/>
+                    </VBox>
+                </GridPane>
+            </VBox>
+        </HBox>
+
+        <Separator styleClass="separator-jv"/>
+        <HBox spacing="40" styleClass="reviews-section" alignment="TOP_LEFT">
+            <VBox spacing="0" HBox.hgrow="ALWAYS" prefWidth="480">
+                <HBox spacing="10" alignment="BASELINE_LEFT" styleClass="reviews-header">
+                    <Label text="Guest Reviews" styleClass="section-title"/>
+                    <Label fx:id="reviewCountDetail" text="(0)" styleClass="label-muted"/>
+                </HBox>
+                <VBox fx:id="reviewList" spacing="16"/>
+                <Button text="Load more entries" styleClass="btn-outline btn-full btn-load-more" onAction="#loadMoreReviews">
+                    <VBox.margin><Insets top="16"/></VBox.margin>
+                </Button>
+            </VBox>
+
+            <VBox prefWidth="320" spacing="0" styleClass="card review-form-card">
+                <Label text="Write a Review" styleClass="review-form-title"/>
+                <Label text="Share your experience with the JVMart community." styleClass="label-muted review-form-subtitle" wrapText="true"/>
+
+                <Label text="RATING" styleClass="form-label"/>
+                <HBox fx:id="starRatingRow" spacing="4">
+                    <Button fx:id="star1" text="*" styleClass="star-btn" onAction="#rateStar1"/>
+                    <Button fx:id="star2" text="*" styleClass="star-btn" onAction="#rateStar2"/>
+                    <Button fx:id="star3" text="*" styleClass="star-btn" onAction="#rateStar3"/>
+                    <Button fx:id="star4" text="*" styleClass="star-btn" onAction="#rateStar4"/>
+                    <Button fx:id="star5" text="*" styleClass="star-btn" onAction="#rateStar5"/>
+                </HBox>
+
+                <Label text="COMMENT" styleClass="form-label"/>
+                <TextArea fx:id="reviewText" promptText="Write your thoughts here..." styleClass="text-area-jv" prefRowCount="5" wrapText="true"/>
+
+                <Button text="Submit Review" styleClass="btn-secondary btn-full btn-submit-review" onAction="#submitReview">
+                    <VBox.margin><Insets top="14"/></VBox.margin>
+                </Button>
+
+                <Label fx:id="reviewSuccess" text="Review submitted!" styleClass="success-label" visible="false" managed="false"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.jvmart.controllers.MyOrdersController"
+      stylesheets="@../css/jvmart-dark.css"
+      spacing="0" styleClass="app-root">
+
+    <HBox spacing="32" VBox.vgrow="ALWAYS" styleClass="my-orders-content" alignment="TOP_LEFT">
+
+        <!-- Sidebar filters -->
+        <VBox spacing="16" prefWidth="200" minWidth="200">
+            <Label text="FILTER BY STATUS" styleClass="label-tiny filter-label"/>
+            <VBox spacing="4">
+                <Button fx:id="filterAll"       text="All Transactions"  styleClass="filter-tab-active" maxWidth="Infinity" onAction="#filterAll"/>
+                <Button fx:id="filterPending"   text="Pending"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterPending"/>
+                <Button fx:id="filterPaid"      text="Completed"         styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterPaid"/>
+                <Button fx:id="filterShipped"   text="Shipped"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterShipped"/>
+                <Button fx:id="filterCancelled" text="Cancelled"         styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterCancelled"/>
+            </VBox>
+
+            <!-- Support card -->
+            <VBox styleClass="card-surface support-card" spacing="8">
+                <VBox.margin><Insets top="16"/></VBox.margin>
+                <Label text="Need Assistance?" styleClass="section-title support-title"/>
+                <Label text="Our support team is available for any order inquiries." styleClass="label-muted support-text" wrapText="true"/>
+                <Button text="Contact Support" styleClass="btn-support" onAction="#contactSupport"/>
+            </VBox>
+        </VBox>
+
+        <!-- Orders table -->
+        <VBox HBox.hgrow="ALWAYS" spacing="0">
+            <Label text="Order Archive" styleClass="page-title orders-page-title"/>
+            <Label text="Review your past acquisitions." styleClass="page-subtitle orders-page-subtitle"/>
+
+            <TableView fx:id="ordersTable" VBox.vgrow="ALWAYS" styleClass="table-view orders-table" onMouseClicked="#onRowClick">
+                <columns>
+                    <TableColumn fx:id="colOrderId"   text="ORDER ID"  prefWidth="140"/>
+                    <TableColumn fx:id="colDate"      text="DATE"      prefWidth="140"/>
+                    <TableColumn fx:id="colItems"     text="ITEMS"     prefWidth="80"/>
+                    <TableColumn fx:id="colTotal"     text="TOTAL"     prefWidth="120"/>
+                    <TableColumn fx:id="colStatus"    text="STATUS"    prefWidth="120"/>
+                    <TableColumn fx:id="colAction"    text="ACTIONS"   prefWidth="120"/>
+                </columns>
+            </TableView>
+
+            <!-- Pagination -->
+            <HBox alignment="CENTER_RIGHT" spacing="8" styleClass="orders-pagination">
+                <Button text="← Previous" styleClass="pagination-btn" onAction="#prevPage"/>
+                <Button fx:id="page1Btn" text="1" styleClass="pagination-btn-active"/>
+                <Button fx:id="page2Btn" text="2" styleClass="pagination-btn" onAction="#goPage2"/>
+                <Button fx:id="page3Btn" text="3" styleClass="pagination-btn" onAction="#goPage3"/>
+                <Button text="Next →" styleClass="pagination-btn" onAction="#nextPage"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>
