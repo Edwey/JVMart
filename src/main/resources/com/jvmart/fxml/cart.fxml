@@ -7,27 +7,34 @@
       stylesheets="@../css/jvmart-dark.css"
       spacing="0" styleClass="app-root">
 
-    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="cart-back-row">
-        <Button text="← Continue shopping" styleClass="btn-ghost" onAction="#continueShopping"/>
+    <HBox alignment="CENTER_LEFT" spacing="16" styleClass="cart-back-row">
+        <Button text="← Continue Shopping" styleClass="btn-ghost-enhanced" onAction="#continueShopping"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="itemCountLabel" text="0 items" styleClass="cart-item-count"/>
     </HBox>
-    <Label text="Your Cart" styleClass="page-title cart-title"/>
+    <VBox spacing="8">
+        <Label text="Shopping Cart" styleClass="page-title cart-title"/>
+        <Label text="Review your items before checkout" styleClass="page-subtitle"/>
+    </VBox>
 
     <HBox spacing="24" VBox.vgrow="ALWAYS" styleClass="cart-content" alignment="TOP_LEFT">
         <VBox HBox.hgrow="ALWAYS" spacing="0">
-            <VBox fx:id="emptyState" alignment="CENTER" spacing="16" styleClass="cart-empty-state" visible="false" managed="false">
-                <Label text="Cart" styleClass="empty-state-icon"/>
-                <Label text="Your cart is empty" styleClass="empty-state-title"/>
-                <Label text="Add some products to get started." styleClass="empty-state-text"/>
-                <Button text="Browse Products" styleClass="btn-primary" onAction="#continueShopping"/>
+            <VBox fx:id="emptyState" alignment="CENTER" spacing="24" styleClass="cart-empty-state-enhanced" visible="false" managed="false">
+                <Label text="🛒" styleClass="empty-state-icon-enhanced"/>
+                <VBox spacing="8" alignment="CENTER">
+                    <Label text="Your cart is empty" styleClass="empty-state-title-enhanced"/>
+                    <Label text="Discover amazing products and add them to your cart" styleClass="empty-state-text-enhanced"/>
+                </VBox>
+                <Button text="Start Shopping" styleClass="btn-primary-enhanced" onAction="#continueShopping"/>
             </VBox>
 
             <VBox fx:id="filledState" spacing="0">
-                <HBox styleClass="cart-header-row">
-                    <Label text="PRODUCT" styleClass="form-label" HBox.hgrow="ALWAYS"/>
-                    <Label text="PRICE" styleClass="form-label" alignment="CENTER_RIGHT" prefWidth="100"/>
-                    <Label text="QTY" styleClass="form-label" alignment="CENTER" prefWidth="100"/>
-                    <Label text="TOTAL" styleClass="form-label" alignment="CENTER_RIGHT" prefWidth="110"/>
-                    <Region prefWidth="36"/>
+                <HBox styleClass="cart-header-row-enhanced">
+                    <Label text="PRODUCT" styleClass="form-label-enhanced" HBox.hgrow="ALWAYS"/>
+                    <Label text="PRICE" styleClass="form-label-enhanced" alignment="CENTER_RIGHT" prefWidth="120"/>
+                    <Label text="QUANTITY" styleClass="form-label-enhanced" alignment="CENTER" prefWidth="120"/>
+                    <Label text="TOTAL" styleClass="form-label-enhanced" alignment="CENTER_RIGHT" prefWidth="120"/>
+                    <Region prefWidth="40"/>
                 </HBox>
 
                 <ScrollPane fitToWidth="true" styleClass="cart-scroll">
@@ -36,8 +43,11 @@
             </VBox>
         </VBox>
 
-        <VBox styleClass="summary-panel" spacing="0" minWidth="230">
-            <Label text="Order Summary" styleClass="summary-title"/>
+        <VBox styleClass="summary-panel-enhanced" spacing="0" minWidth="280">
+            <VBox spacing="8" styleClass="summary-header-enhanced">
+                <Label text="Order Summary" styleClass="summary-title-enhanced"/>
+                <Label text="Estimated total and shipping" styleClass="summary-subtitle-enhanced"/>
+            </VBox>
 
             <HBox styleClass="summary-row">
                 <Label text="Subtotal" styleClass="summary-label" HBox.hgrow="ALWAYS"/>

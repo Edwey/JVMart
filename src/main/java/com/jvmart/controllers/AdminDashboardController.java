@@ -137,5 +137,9 @@ public class AdminDashboardController {
     @FXML private void gotoReports() { onNavReports(); }
     @FXML private void exportReport() { AlertHelper.info("Export Report", "Export is not configured yet."); }
     @FXML private void viewAllOrders() { SceneRouter.navigateTo("admin_orders.fxml"); }
+    @FXML private void refreshDashboard() { 
+        loadDashboardStats();
+        AlertHelper.info("Dashboard Refreshed", "Dashboard data has been refreshed successfully.");
+    }
 
 }

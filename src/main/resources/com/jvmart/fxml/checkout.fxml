@@ -87,7 +87,7 @@
             </VBox>
         </FlowPane>
 
-        <Button text="<- Return to cart" styleClass="btn-ghost btn-return-cart" onAction="#returnToCart">
+        <Button text="&lt;- Return to cart" styleClass="btn-ghost btn-return-cart" onAction="#returnToCart">
             <VBox.margin><Insets top="12"/></VBox.margin>
         </Button>
     </VBox>

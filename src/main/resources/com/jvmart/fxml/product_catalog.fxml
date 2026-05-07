@@ -25,47 +25,70 @@
                 <Insets top="48.0" right="48.0" bottom="48.0" left="48.0"/>
             </padding>
 
-            <HBox alignment="BOTTOM_LEFT" spacing="24.0">
-                <VBox spacing="16.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="BOTTOM_LEFT" spacing="32.0">
+                <VBox spacing="20.0" HBox.hgrow="ALWAYS">
                     <Label text="The Archive" styleClass="page-title"/>
+                    <Label text="Discover our curated collection of premium products" styleClass="page-subtitle"/>
 
-                    <StackPane alignment="CENTER_LEFT" styleClass="search-bar">
+                    <StackPane alignment="CENTER_LEFT" styleClass="search-bar-enhanced">
                         <TextField fx:id="searchField"
-                                   promptText="Search curated products..."
+                                   promptText="Search products by name or category..."
                                    onKeyReleased="#onSearch"
-                                   styleClass="search-input"/>
-                        <Label text="🔍" styleClass="search-icon-label" StackPane.alignment="CENTER_LEFT"/>
+                                   styleClass="search-input-enhanced"/>
+                        <Label text="🔍" styleClass="search-icon-label-enhanced" StackPane.alignment="CENTER_LEFT"/>
                     </StackPane>
                 </VBox>
 
                 <Region HBox.hgrow="ALWAYS"/>
 
-                <HBox alignment="BOTTOM_RIGHT" spacing="16.0">
-                    <ComboBox fx:id="sortCombo"
-                              onAction="#onSort"
-                              styleClass="sort-combo">
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Newest"/>
-                                <String fx:value="Price: Low to High"/>
-                                <String fx:value="Price: High to Low"/>
-                                <String fx:value="Name: A-Z"/>
-                            </FXCollections>
-                        </items>
-                    </ComboBox>
-
-                    <Button text="Sidebar Filters"
-                            onAction="#showFilterHelp"
-                            styleClass="btn-dark"/>
-                </HBox>
+                <VBox spacing="12.0" alignment="BOTTOM_RIGHT">
+                    <HBox alignment="CENTER" spacing="12.0">
+                        <Label text="Sort by:" styleClass="sort-label"/>
+                        <ComboBox fx:id="sortCombo"
+                                  onAction="#onSort"
+                                  styleClass="sort-combo-enhanced">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Newest"/>
+                                    <String fx:value="Price: Low to High"/>
+                                    <String fx:value="Price: High to Low"/>
+                                    <String fx:value="Name: A-Z"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </HBox>
+                    
+                    <HBox alignment="CENTER" spacing="8.0">
+                        <Button text="🔧 Filters"
+                                onAction="#showFilterHelp"
+                                styleClass="btn-filter"/>
+                        <Button text="⟳ Refresh"
+                                onAction="#refreshProducts"
+                                styleClass="btn-refresh"/>
+                    </HBox>
+                </VBox>
             </HBox>
 
-            <FlowPane fx:id="productGrid"
-                      hgap="32.0"
-                      vgap="32.0"
-                      prefWrapLength="1000.0"/>
+            <VBox fx:id="productsContainer" spacing="24.0">
+                <FlowPane fx:id="productGrid"
+                          hgap="24.0"
+                          vgap="24.0"
+                          prefWrapLength="1200.0"/>
+                
+                <HBox fx:id="loadingIndicator" alignment="CENTER" spacing="16" visible="false" managed="false" styleClass="loading-container">
+                    <Label text="Loading" styleClass="loading-text"/>
+                    <Label text="⏳" styleClass="loading-spinner"/>
+                </HBox>
+                
+                <VBox fx:id="emptyState" alignment="CENTER" spacing="16" visible="false" managed="false" styleClass="empty-state-enhanced">
+                    <Label text="📦" styleClass="empty-state-icon-enhanced"/>
+                    <Label text="No products found" styleClass="empty-state-title-enhanced"/>
+                    <Label text="Try adjusting your search or filters" styleClass="empty-state-text-enhanced"/>
+                    <Button text="Clear Filters" styleClass="btn-primary" onAction="#clearFilters"/>
+                </VBox>
+            </VBox>
 
-            <Region prefHeight="60.0"/>
+            <Region prefHeight="80.0"/>
         </VBox>
     </ScrollPane>
 </VBox>

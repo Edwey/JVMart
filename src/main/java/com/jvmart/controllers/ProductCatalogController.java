@@ -5,6 +5,7 @@ import com.jvmart.models.Product;
 import com.jvmart.models.User;
 import com.jvmart.services.ActivityLogService;
 import com.jvmart.services.ProductService;
+import com.jvmart.services.ReviewService;
 import com.jvmart.session.SessionManager;
 import com.jvmart.utils.AlertHelper;
 import com.jvmart.utils.ImageHelper;
@@ -44,6 +45,7 @@ public class ProductCatalogController {
 
     private final ProductService productService = new ProductService();
     private final ActivityLogService activityLogService = new ActivityLogService();
+    private final ReviewService reviewService = new ReviewService();
     private List<Product> allProducts;
 
     @FXML
@@ -201,7 +203,19 @@ public class ProductCatalogController {
             addBtn.setDisable(true);
         }
 
-        details.getChildren().addAll(titleBlock, metaRow, addBtn);
+        // Add average rating display
+        var avgResult = reviewService.getAverageRating(product.getId());
+        double avgRating = 0.0;
+        if (avgResult instanceof com.jvmart.services.ServiceResult.Success<?> success) {
+            avgRating = (Double) success.value();
+        }
+        
+        VBox ratingBlock = new VBox(2);
+        Label ratingLabel = new Label(String.format("⭐ %.1f", avgRating));
+        ratingLabel.getStyleClass().add("product-rating-label");
+        ratingBlock.getChildren().add(ratingLabel);
+        
+        details.getChildren().addAll(titleBlock, metaRow, ratingBlock, addBtn);
         card.getChildren().addAll(imageArea, details);
         return card;
     }
@@ -311,5 +325,18 @@ public class ProductCatalogController {
                 .filter(p -> p.getName() != null && p.getName().toLowerCase().contains(query) || 
                            p.getCategory() != null && p.getCategory().toLowerCase().contains(query))
                 .collect(Collectors.toList());
+    }
+
+    @FXML private void refreshProducts() {
+        loadProducts("All Products");
+        AlertHelper.info("Products Refreshed", "Product catalog has been refreshed successfully.");
+    }
+
+    @FXML private void clearFilters() {
+        if (searchField != null) {
+            searchField.clear();
+        }
+        loadProducts("All Products");
+        AlertHelper.info("Filters Cleared", "All filters have been cleared.");
     }
 }
