@@ -6,6 +6,7 @@ import com.jvmart.session.SessionManager;
 import com.jvmart.utils.AlertHelper;
 import com.jvmart.utils.SceneRouter;
 import com.jvmart.utils.ThemeManager;
+import com.jvmart.utils.GlobalRefresh;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -16,8 +17,9 @@ import javafx.util.converter.IntegerStringConverter;
 
 import java.util.List;
 
-public class AdminInventoryController {
+public class AdminInventoryController implements GlobalRefresh.Refreshable {
     @FXML private TableView<Product> inventoryTable;
+    @FXML private TableColumn<Product, javafx.scene.image.ImageView> colImage;
     @FXML private TableColumn<Product, String> colProduct;
     @FXML private TableColumn<Product, String> colCategory;
     @FXML private TableColumn<Product, Integer> colStock;
@@ -44,6 +46,18 @@ public class AdminInventoryController {
         }
 
         // Set up cell value factories
+        colImage.setCellValueFactory(data -> {
+            javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView();
+            javafx.scene.image.Image image = com.jvmart.utils.ImageHelper.loadProductImage(data.getValue().getImagePath());
+            if (image != null) {
+                imageView.setImage(image);
+                imageView.setFitWidth(60);
+                imageView.setFitHeight(60);
+                imageView.setPreserveRatio(true);
+            }
+            return new javafx.beans.property.SimpleObjectProperty<javafx.scene.image.ImageView>(imageView);
+        });
+        
         colProduct.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getName()));
         colCategory.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCategory()));
         
@@ -108,7 +122,8 @@ public class AdminInventoryController {
                 editBtn.setOnAction(e -> {
                     Product p = getTableView().getItems().get(getIndex());
                     if (p != null) {
-                        showEditProductDialog(p);
+                        // TODO: Implement edit product dialog
+                        AlertHelper.info("Edit Product", "Product editing will be implemented soon.");
                     }
                 });
 
@@ -198,6 +213,17 @@ public class AdminInventoryController {
     @FXML private void onNavOrders() { SceneRouter.navigateTo("admin_orders.fxml"); }
     @FXML private void onNavCustomers() { SceneRouter.navigateTo("admin_customers.fxml"); }
     @FXML private void onNavReports() { SceneRouter.navigateTo("admin_reports.fxml"); }
+    @FXML private void exportData() {
+        AlertHelper.info("Export Data", "Data export functionality will be implemented soon.");
+    }
+
+    @Override
+    public void refresh() {
+        loadProducts();
+        updateSummaryTiles(allProducts);
+        AlertHelper.info("Inventory Refreshed", "Inventory data has been refreshed successfully.");
+    }
+
     @FXML private void onToggleTheme() { ThemeManager.toggleTheme(inventoryTable.getScene()); }
 
     @FXML
@@ -321,45 +347,10 @@ public class AdminInventoryController {
 
     @FXML
     private void onRowClick() {
-        // reserved for future detail view
-    }
-
-    private void showEditProductDialog(Product product) {
-        TextInputDialog nameDialog = new TextInputDialog(product.getName());
-        nameDialog.setTitle("Edit Product");
-        nameDialog.setHeaderText("Editing: " + product.getName());
-        nameDialog.setContentText("Product Name:");
-        
-        nameDialog.getDialogPane().getStylesheets().add(
-            getClass().getResource("/com/jvmart/css/jvmart-dark.css").toExternalForm()
-        );
-        nameDialog.getDialogPane().setStyle("-fx-background-color: #231F20;");
-        
-        nameDialog.showAndWait().ifPresent(newName -> {
-            TextInputDialog priceDialog = new TextInputDialog(String.valueOf(product.getPrice()));
-            priceDialog.setTitle("Edit Price");
-            priceDialog.setHeaderText("Set new price for: " + newName);
-            priceDialog.setContentText("Price (GHS):");
-            
-            priceDialog.getDialogPane().getStylesheets().add(
-                getClass().getResource("/com/jvmart/css/jvmart-dark.css").toExternalForm()
-            );
-            priceDialog.getDialogPane().setStyle("-fx-background-color: #231F20;");
-            
-            priceDialog.showAndWait().ifPresent(priceStr -> {
-                try {
-                    double newPrice = Double.parseDouble(priceStr);
-                    if (newPrice >= 0) {
-                        product.setName(newName);
-                        product.setPrice(newPrice);
-                        dirtyStock.add(product.getId());
-                        inventoryTable.refresh();
-                        AlertHelper.success("Product Updated", "Name and price updated. Click Save to persist changes.");
-                    }
-                } catch (NumberFormatException ex) {
-                    AlertHelper.error("Invalid Input", "Please enter a valid price.");
-                }
-            });
-        });
+        Product selectedProduct = inventoryTable.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            // Handle row click - could show product details or edit dialog
+            AlertHelper.info("Product Selected", "Selected: " + selectedProduct.getName());
+        }
     }
 }

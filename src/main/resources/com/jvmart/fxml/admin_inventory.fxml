@@ -4,7 +4,6 @@
 <?import javafx.geometry.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.jvmart.controllers.AdminInventoryController"
-      stylesheets="@../css/jvmart-dark.css"
       spacing="0" styleClass="app-root admin-page">
 
     <!-- Header -->
@@ -37,11 +36,12 @@
     <VBox spacing="0" VBox.vgrow="ALWAYS" styleClass="admin-table-container">
         <TableView fx:id="inventoryTable" VBox.vgrow="ALWAYS" styleClass="table-view admin-table" onMouseClicked="#onRowClick">
             <columns>
-                <TableColumn fx:id="colProduct" text="PRODUCT" prefWidth="240"/>
-                <TableColumn fx:id="colCategory" text="CATEGORY" prefWidth="150"/>
-                <TableColumn fx:id="colStock" text="STOCK" prefWidth="100"/>
-                <TableColumn fx:id="colStatus" text="STATUS" prefWidth="130"/>
-                <TableColumn fx:id="colSave" text="ACTIONS" prefWidth="340"/>
+                <TableColumn fx:id="colImage" text="IMAGE" prefWidth="80"/>
+                <TableColumn fx:id="colProduct" text="PRODUCT" prefWidth="200"/>
+                <TableColumn fx:id="colCategory" text="CATEGORY" prefWidth="120"/>
+                <TableColumn fx:id="colStock" text="STOCK" prefWidth="80"/>
+                <TableColumn fx:id="colStatus" text="STATUS" prefWidth="100"/>
+                <TableColumn fx:id="colSave" text="ACTIONS" prefWidth="280"/>
             </columns>
         </TableView>
 

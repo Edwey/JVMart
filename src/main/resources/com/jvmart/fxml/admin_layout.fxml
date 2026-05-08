@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.SVGPath?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.jvmart.controllers.AdminShellController"
-            stylesheets="@../css/jvmart-dark.css"
             styleClass="app-root">
 
     <top>
@@ -74,6 +73,8 @@
                 <Button fx:id="sideCustomers" text="Customers" styleClass="sidebar-item" onAction="#gotoCustomers"/>
                 <Button fx:id="sideInventory" text="Inventory" styleClass="sidebar-item" onAction="#gotoInventory"/>
                 <Button fx:id="sideReports" text="Reports" styleClass="sidebar-item" onAction="#gotoReports"/>
+                <Button fx:id="sideReviews" text="Reviews" styleClass="sidebar-item" onAction="#gotoReviews"/>
+                <Button fx:id="sideReviewsAnalytics" text="Reviews analytics" styleClass="sidebar-item" onAction="#gotoReviewsAnalytics"/>
             </VBox>
 
             <Region VBox.vgrow="ALWAYS"/>

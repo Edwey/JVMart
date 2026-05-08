@@ -2,10 +2,12 @@ package com.jvmart.controllers;
 
 import com.jvmart.models.CartItem;
 import com.jvmart.services.ActivityLogService;
+import com.jvmart.services.WishlistService;
+import com.jvmart.utils.AlertHelper;
 import com.jvmart.utils.ImageHelper;
 import com.jvmart.session.SessionManager;
 import com.jvmart.utils.SceneRouter;
-import com.jvmart.utils.ThemeManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +20,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class CartController {
@@ -28,7 +31,9 @@ public class CartController {
     @FXML private Label totalLabel;
     @FXML private Label shippingLabel;
     @FXML private Button checkoutBtn;
+    @FXML private Label itemCountLabel;
     private final ActivityLogService activityLogService = new ActivityLogService();
+    private final WishlistService wishlistService = WishlistService.getInstance();
 
     @FXML
     public void initialize() {
@@ -58,6 +63,10 @@ public class CartController {
         cartItemsContainer.getChildren().clear();
         for (CartItem item : cart) {
             cartItemsContainer.getChildren().add(createCartItemRow(item));
+        }
+
+        if (itemCountLabel != null) {
+            itemCountLabel.setText(cart.size() + " items");
         }
     }
 
@@ -154,11 +163,6 @@ public class CartController {
     }
 
     @FXML
-    private void onToggleTheme() {
-        ThemeManager.toggleTheme(cartItemsContainer.getScene());
-    }
-
-    @FXML
     private void continueShopping() {
         onBack();
     }
@@ -166,5 +170,53 @@ public class CartController {
     @FXML
     private void proceedToCheckout() {
         onCheckout();
+    }
+
+    @FXML
+    private void returnToCart() {
+        SceneRouter.navigateTo("cart.fxml");
+    }
+
+    @FXML
+    private void addToWishlist() {
+        List<CartItem> cart = SessionManager.getInstance().getCart();
+        if (cart.isEmpty()) {
+            AlertHelper.info("Wishlist", "Your cart is empty.");
+            return;
+        }
+        Thread.startVirtualThread(() -> {
+            try {
+                int n = wishlistService.addCartItemsToWishlist(cart);
+                Platform.runLater(() -> {
+                    if (n > 0) {
+                        AlertHelper.success("Wishlist updated", "Added " + n + " cart item(s) to your saved list.");
+                    } else {
+                        AlertHelper.info("Wishlist", "Those items are already on your wishlist.");
+                    }
+                });
+            } catch (SQLException ex) {
+                Platform.runLater(() -> AlertHelper.error("Wishlist failed", ex.getMessage()));
+            }
+        });
+    }
+
+    @FXML
+    private void viewWishlist() {
+        // #region agent log
+        com.jvmart.utils.DebugLog.log(
+                "wishlistView",
+                "CartController.viewWishlist",
+                "Navigating to wishlist screen",
+                java.util.Map.of(),
+                "pre-fix"
+        );
+        // #endregion
+
+        SceneRouter.navigateTo("wishlist.fxml");
+    }
+
+    @FXML
+    private void saveCartForLater() {
+        AlertHelper.info("Cart persistence", "Your cart is saved automatically to your account and restored when you sign in.");
     }
 }

@@ -13,7 +13,6 @@
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.jvmart.controllers.CustomerHomeController"
             fitToWidth="true"
-            stylesheets="@../css/jvmart-dark.css"
             styleClass="app-root">
 
     <VBox spacing="0" styleClass="page-content">

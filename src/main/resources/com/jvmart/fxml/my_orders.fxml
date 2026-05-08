@@ -4,20 +4,39 @@
 <?import javafx.geometry.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.jvmart.controllers.MyOrdersController"
-      stylesheets="@../css/jvmart-dark.css"
       spacing="0" styleClass="app-root">
 
     <HBox spacing="32" VBox.vgrow="ALWAYS" styleClass="my-orders-content" alignment="TOP_LEFT">
 
         <!-- Sidebar filters -->
         <VBox spacing="16" prefWidth="200" minWidth="200">
-            <Label text="FILTER BY STATUS" styleClass="label-tiny filter-label"/>
+            <Label text="VIEW TYPE" styleClass="label-tiny filter-label"/>
             <VBox spacing="4">
-                <Button fx:id="filterAll"       text="All Transactions"  styleClass="filter-tab-active" maxWidth="Infinity" onAction="#filterAll"/>
-                <Button fx:id="filterPending"   text="Pending"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterPending"/>
-                <Button fx:id="filterPaid"      text="Completed"         styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterPaid"/>
-                <Button fx:id="filterShipped"   text="Shipped"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterShipped"/>
-                <Button fx:id="filterCancelled" text="Cancelled"         styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterCancelled"/>
+                <Button fx:id="viewOrders"     text="My Orders"         styleClass="filter-tab-active" maxWidth="Infinity" onAction="#viewOrders"/>
+                <Button fx:id="viewReviews"    text="My Reviews"        styleClass="filter-tab"        maxWidth="Infinity" onAction="#viewReviews"/>
+            </VBox>
+            
+            <VBox fx:id="orderFilters" spacing="8">
+                <Label text="FILTER BY STATUS" styleClass="label-tiny filter-label"/>
+                <VBox spacing="4">
+                    <Button fx:id="filterAll"       text="All Transactions"  styleClass="filter-tab-active" maxWidth="Infinity" onAction="#filterAll"/>
+                    <Button fx:id="filterPending"   text="Pending"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterPending"/>
+                    <Button fx:id="filterPaid"      text="Completed"         styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterPaid"/>
+                    <Button fx:id="filterShipped"   text="Shipped"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterShipped"/>
+                    <Button fx:id="filterCancelled" text="Cancelled"         styleClass="filter-tab"        maxWidth="Infinity" onAction="#filterCancelled"/>
+                </VBox>
+            </VBox>
+            
+            <VBox fx:id="reviewFilters" spacing="8" visible="false" managed="false">
+                <Label text="FILTER BY RATING" styleClass="label-tiny filter-label"/>
+                <VBox spacing="4">
+                    <Button fx:id="filterAllReviews" text="All Reviews"       styleClass="filter-tab-active" maxWidth="Infinity" onAction="#filterAllReviews"/>
+                    <Button fx:id="filter5Star"      text="5 Stars"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filter5Star"/>
+                    <Button fx:id="filter4Star"      text="4 Stars"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filter4Star"/>
+                    <Button fx:id="filter3Star"      text="3 Stars"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filter3Star"/>
+                    <Button fx:id="filter2Star"      text="2 Stars"           styleClass="filter-tab"        maxWidth="Infinity" onAction="#filter2Star"/>
+                    <Button fx:id="filter1Star"      text="1 Star"            styleClass="filter-tab"        maxWidth="Infinity" onAction="#filter1Star"/>
+                </VBox>
             </VBox>
 
             <!-- Support card -->
@@ -30,7 +49,7 @@
         </VBox>
 
         <!-- Orders table -->
-        <VBox HBox.hgrow="ALWAYS" spacing="0">
+        <VBox fx:id="orderContent" HBox.hgrow="ALWAYS" spacing="0">
             <Label text="Order Archive" styleClass="page-title orders-page-title"/>
             <Label text="Review your past acquisitions." styleClass="page-subtitle orders-page-subtitle"/>
 
@@ -52,6 +71,25 @@
                 <Button fx:id="page2Btn" text="2" styleClass="pagination-btn" onAction="#goPage2"/>
                 <Button fx:id="page3Btn" text="3" styleClass="pagination-btn" onAction="#goPage3"/>
                 <Button text="Next →" styleClass="pagination-btn" onAction="#nextPage"/>
+            </HBox>
+        </VBox>
+
+        <!-- Reviews content -->
+        <VBox fx:id="reviewContent" HBox.hgrow="ALWAYS" spacing="0" visible="false" managed="false">
+            <Label text="Review History" styleClass="page-title orders-page-title"/>
+            <Label text="Manage your product reviews and ratings." styleClass="page-subtitle orders-page-subtitle"/>
+
+            <ScrollPane fx:id="reviewsScrollPane" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                <VBox fx:id="reviewsList" spacing="12" styleClass="reviews-list"/>
+            </ScrollPane>
+
+            <!-- Review pagination -->
+            <HBox fx:id="reviewPagination" alignment="CENTER_RIGHT" spacing="8" styleClass="orders-pagination" visible="false" managed="false">
+                <Button text="← Previous" styleClass="pagination-btn" onAction="#prevReviewPage"/>
+                <Button fx:id="reviewPage1Btn" text="1" styleClass="pagination-btn-active"/>
+                <Button fx:id="reviewPage2Btn" text="2" styleClass="pagination-btn" onAction="#goReviewPage2"/>
+                <Button fx:id="reviewPage3Btn" text="3" styleClass="pagination-btn" onAction="#goReviewPage3"/>
+                <Button text="Next →" styleClass="pagination-btn" onAction="#nextReviewPage"/>
             </HBox>
         </VBox>
     </HBox>

@@ -15,7 +15,6 @@
 <?import javafx.scene.shape.SVGPath?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.jvmart.controllers.ProductCatalogController"
-      stylesheets="@../css/jvmart-dark.css"
       spacing="0"
       styleClass="app-root">
 
@@ -62,6 +61,9 @@
                         <Button text="🔧 Filters"
                                 onAction="#showFilterHelp"
                                 styleClass="btn-filter"/>
+                        <Button text="⭐ My Reviews"
+                                onAction="#onMyReviews"
+                                styleClass="btn-reviews"/>
                         <Button text="⟳ Refresh"
                                 onAction="#refreshProducts"
                                 styleClass="btn-refresh"/>

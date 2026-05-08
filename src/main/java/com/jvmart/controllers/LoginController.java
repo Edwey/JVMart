@@ -1,5 +1,7 @@
 package com.jvmart.controllers;
 
+import com.jvmart.dao.sql.CartDAO;
+import com.jvmart.models.CartItem;
 import com.jvmart.models.User;
 import com.jvmart.services.ActivityLogService;
 import com.jvmart.services.UserService;
@@ -14,6 +16,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class LoginController {
     @FXML private TextField usernameField;
@@ -68,22 +73,36 @@ public class LoginController {
 
         Thread.startVirtualThread(() -> {
             var result = userService.login(username, password);
-            Platform.runLater(() -> {
-                switch (result) {
-                    case com.jvmart.services.ServiceResult.Success<?> success -> {
-                        User user = (User) success.value();
-                        SessionManager.getInstance().login(user);
+            switch (result) {
+                case com.jvmart.services.ServiceResult.Success<?> success -> {
+                    User user = (User) success.value();
+                    var rows = switch (user.getRole()) {
+                        case "admin" -> java.util.List.<com.jvmart.models.CartItem>of();
+                        default -> loadCartQuiet(user.getId());
+                    };
+                    Platform.runLater(() -> {
+                        SessionManager sm = SessionManager.getInstance();
+                        sm.login(user);
+                        sm.replaceCart(rows);
                         activityLogService.log(user.getId(), "LOGIN", "User logged in successfully");
                         switch (user.getRole()) {
                             case "admin" -> SceneRouter.navigateTo("admin_overview.fxml");
                             default -> SceneRouter.navigateTo("customer_home.fxml");
                         }
-                    }
-                    case com.jvmart.services.ServiceResult.Failure<?> failure ->
-                        AlertHelper.error("Login failed: " + failure.message());
+                    });
                 }
-            });
+                case com.jvmart.services.ServiceResult.Failure<?> failure ->
+                        Platform.runLater(() -> AlertHelper.error("Login failed: " + failure.message()));
+            }
         });
+    }
+
+    private static List<CartItem> loadCartQuiet(int userId) {
+        try {
+            return new CartDAO().loadCartForUser(userId);
+        } catch (SQLException e) {
+            return List.of();
+        }
     }
 
     @FXML

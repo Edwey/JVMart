@@ -141,7 +141,7 @@ public class AdminOrdersController {
     private void onSearch() {
         if (filteredOrders == null) return;
         String query = searchField.getText() == null ? "" : searchField.getText().toLowerCase();
-        Integer filterUserId = (Integer) SceneRouter.transferData.get("filterUserId");
+        Integer filterUserId = SceneRouter.getNavigationArgument("filterUserId");
         filteredOrders.setPredicate(order -> {
             boolean matchesQuery = query.isEmpty() ||
                     String.valueOf(order.getId()).contains(query) ||

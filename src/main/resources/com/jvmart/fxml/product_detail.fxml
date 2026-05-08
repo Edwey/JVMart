@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.jvmart.controllers.ProductDetailController"
-            stylesheets="@../css/jvmart-dark.css"
             fitToWidth="true"
             styleClass="app-root">
 
@@ -31,9 +30,10 @@
                 <Label fx:id="categoryLabel" text="Electronics" styleClass="product-category"/>
                 <Label fx:id="productName" text="Product Name" styleClass="product-title" wrapText="true"/>
 
-                <HBox spacing="8" alignment="CENTER_LEFT" styleClass="reviews-row">
+                <HBox spacing="10" alignment="BASELINE_LEFT" styleClass="reviews-row">
                     <HBox fx:id="starsRow" spacing="2"/>
                     <Label fx:id="reviewCount" text="0 Reviews" styleClass="label-muted"/>
+                    <Button text="View All Reviews" styleClass="btn-ghost btn-small" onAction="#viewAllReviews"/>
                 </HBox>
 
                 <HBox spacing="10" alignment="BASELINE_LEFT">
@@ -58,7 +58,7 @@
 
                 <HBox spacing="10" styleClass="action-buttons-row" alignment="CENTER_LEFT">
                     <Button fx:id="addToCartBtn" text="Add to cart" styleClass="btn-primary btn-add-cart" onAction="#addToCart"/>
-                    <Button text="Save" styleClass="btn-outline btn-wishlist" onAction="#toggleWishlist"/>
+                    <Button fx:id="wishlistToggleBtn" text="Save" styleClass="btn-outline btn-wishlist" onAction="#toggleWishlist"/>
                 </HBox>
 
                 <Separator styleClass="separator-jv"/>

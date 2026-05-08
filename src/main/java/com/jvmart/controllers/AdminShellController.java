@@ -26,6 +26,8 @@ public class AdminShellController {
     @FXML private Button sideOrders;
     @FXML private Button sideCustomers;
     @FXML private Button sideInventory;
+    @FXML private Button sideReviews;
+    @FXML private Button sideReviewsAnalytics;
     @FXML private Button sideReports;
     @FXML private Label adminInitials;
     @FXML private StackPane adminContent;
@@ -65,6 +67,8 @@ public class AdminShellController {
         setNavStyle(sideOrders, false);
         setNavStyle(sideCustomers, false);
         setNavStyle(sideInventory, false);
+        setNavStyle(sideReviews, false);
+        setNavStyle(sideReviewsAnalytics, false);
         setNavStyle(sideReports, false);
 
         switch (contentFxml) {
@@ -83,6 +87,8 @@ public class AdminShellController {
             case "admin_customers.fxml" -> setNavStyle(sideCustomers, true);
             case "admin_inventory.fxml" -> setNavStyle(sideInventory, true);
             case "admin_reports.fxml" -> setNavStyle(sideReports, true);
+            case "admin_reviews.fxml" -> setNavStyle(sideReviews, true);
+            case "admin_reviews_analytics.fxml" -> setNavStyle(sideReviewsAnalytics, true);
             default -> { }
         }
     }
@@ -115,6 +121,8 @@ public class AdminShellController {
     @FXML private void gotoCustomers() { navCustomers(); }
     @FXML private void gotoInventory() { navInventory(); }
     @FXML private void gotoReports() { navReports(); }
+    @FXML private void gotoReviews() { SceneRouter.navigateTo("admin_reviews.fxml"); }
+    @FXML private void gotoReviewsAnalytics() { SceneRouter.navigateTo("admin_reviews_analytics.fxml"); }
     @FXML private void exportReport() { AlertHelper.info("Export Report", "Export is not configured yet."); }
     @FXML private void onLogout() { 
         activityLogService.logCurrentUser("LOGOUT", "User logged out.");
@@ -122,11 +130,8 @@ public class AdminShellController {
         SceneRouter.navigateTo("login.fxml"); 
     }
     @FXML private void onToggleTheme() {
-        System.out.println("[AdminShell] Theme button clicked");
         if (navHome != null && navHome.getScene() != null) {
             ThemeManager.toggleTheme(navHome.getScene());
-        } else {
-            System.err.println("[AdminShell] Scene is null, cannot toggle theme");
         }
     }
 }

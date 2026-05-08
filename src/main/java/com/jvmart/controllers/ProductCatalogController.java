@@ -14,6 +14,7 @@ import com.jvmart.utils.ThemeManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -30,9 +31,10 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ProductCatalogController {
+public class ProductCatalogController implements com.jvmart.utils.GlobalRefresh.Refreshable {
     @FXML private TextField searchField;
     @FXML private ComboBox<String> sortCombo;
     @FXML private FlowPane productGrid;
@@ -80,7 +82,7 @@ public class ProductCatalogController {
             sortCombo.setValue("Newest");
         }
 
-        String initialCategory = (String) SceneRouter.transferData.get("catalogCategory");
+        String initialCategory = SceneRouter.getNavigationArgument("catalogCategory");
         loadProducts(initialCategory == null ? "all" : initialCategory);
         updateCartCount();
 
@@ -166,57 +168,81 @@ public class ProductCatalogController {
         details.setPadding(new Insets(24));
         details.getStyleClass().add("product-details");
 
-        VBox titleBlock = new VBox(4);
         Label nameLabel = new Label(product.getName());
         nameLabel.setWrapText(true);
         nameLabel.getStyleClass().add("product-name");
 
-        Label catLabel = new Label(product.getCategory());
-        catLabel.getStyleClass().add("product-category-tag");
-        titleBlock.getChildren().addAll(nameLabel, catLabel);
+        // Category and rating row
+        HBox metaRow = new HBox(8);
+        metaRow.setAlignment(Pos.CENTER_LEFT);
 
-        VBox priceBlock = new VBox(2);
-        Label investmentLabel = new Label("I N V E S T M E N T");
-        investmentLabel.getStyleClass().add("product-investment-label");
+        Label categoryLabel = new Label(product.getCategory());
+        categoryLabel.getStyleClass().addAll("product-category", "text-xs", "font-medium");
 
-        Label priceLabel = new Label(String.format("GHs %.2f", product.getPrice()));
-        priceLabel.getStyleClass().add("product-price-label");
-        priceBlock.getChildren().addAll(investmentLabel, priceLabel);
-
-        Label stockLabel = new Label(product.getStock() > 0 ? "In stock: " + product.getStock() : "Out of stock");
-        stockLabel.getStyleClass().add(product.getStock() > 0 ? "product-stock-in" : "product-stock-out");
-
-        HBox metaRow = new HBox();
-        Region metaSpacer = new Region();
-        HBox.setHgrow(metaSpacer, Priority.ALWAYS);
-        metaRow.getChildren().addAll(priceBlock, metaSpacer, stockLabel);
-
-        Button addBtn = new Button(product.getStock() > 0 ? "A D D   T O   C A R T" : "O U T   O F   S T O C K");
-        addBtn.setMaxWidth(Double.MAX_VALUE);
-        addBtn.getStyleClass().add(product.getStock() > 0 ? "btn-add-cart" : "btn-out-of-stock");
-        if (product.getStock() > 0) {
-            addBtn.setOnAction(e -> {
-                e.consume();
-                onAddToCart(product);
-            });
-        } else {
-            addBtn.setDisable(true);
-        }
-
-        // Add average rating display
+        // Average rating
         var avgResult = reviewService.getAverageRating(product.getId());
         double avgRating = 0.0;
         if (avgResult instanceof com.jvmart.services.ServiceResult.Success<?> success) {
             avgRating = (Double) success.value();
         }
-        
-        VBox ratingBlock = new VBox(2);
-        Label ratingLabel = new Label(String.format("⭐ %.1f", avgRating));
-        ratingLabel.getStyleClass().add("product-rating-label");
-        ratingBlock.getChildren().add(ratingLabel);
-        
-        details.getChildren().addAll(titleBlock, metaRow, ratingBlock, addBtn);
+
+        HBox ratingRow = new HBox(2);
+        ratingRow.setAlignment(Pos.CENTER_LEFT);
+        ratingRow.getStyleClass().add("catalog-rating-row");
+
+        int fullStars = (int) Math.round(avgRating);
+        for (int i = 1; i <= 5; i++) {
+            boolean filled = i <= fullStars;
+            Label star = new Label(filled ? "★" : "☆");
+            star.getStyleClass().addAll("catalog-star", filled ? "review-star-filled" : "review-star-empty");
+            ratingRow.getChildren().add(star);
+        }
+
+        Label ratingCount = new Label(String.format("(%.1f)", avgRating));
+        ratingCount.getStyleClass().addAll("catalog-rating-avg", "label-muted");
+
+        metaRow.getChildren().addAll(categoryLabel, ratingRow, ratingCount);
+
+        // Price
+        HBox priceRow = new HBox(8);
+        priceRow.setAlignment(Pos.CENTER_LEFT);
+
+        Label priceLabel = new Label(String.format("GHS %.2f", product.getPrice()));
+        priceLabel.getStyleClass().addAll("product-price", "catalog-product-price");
+
+        // Original price (if discounted)
+        Label originalPriceLabel = new Label();
+        if (product.getPrice() < 100) { // Simulate discount
+            originalPriceLabel.setText(String.format("GHS %.2f", product.getPrice() * 1.3));
+            originalPriceLabel.getStyleClass().addAll("label-muted", "label-strikethrough", "catalog-original-price");
+            priceRow.getChildren().addAll(originalPriceLabel, priceLabel);
+        } else {
+            priceRow.getChildren().add(priceLabel);
+        }
+
+        // Stock status
+        String stockText = product.getStock() > 0 ? 
+            (product.getStock() <= 5 ? "Only " + product.getStock() + " left" : "In stock") : 
+            "Out of stock";
+        Label stockLabel = new Label(stockText);
+        stockLabel.getStyleClass().addAll(product.getStock() > 0 ? 
+            (product.getStock() <= 5 ? "text-warning" : "text-success") : 
+            "text-error", "text-sm", "font-medium");
+
+        // Add to cart button
+        Button addToCartBtn = new Button(product.getStock() > 0 ? "Add to Cart" : "Out of Stock");
+        addToCartBtn.getStyleClass().addAll("add-to-cart-btn", product.getStock() > 0 ? "btn-primary" : "btn-secondary");
+        addToCartBtn.setMaxWidth(Double.MAX_VALUE);
+        addToCartBtn.setDisable(product.getStock() == 0);
+        addToCartBtn.setPrefHeight(44);
+
+        addToCartBtn.setOnAction(e -> onAddToCart(product));
+
+        details.getChildren().addAll(nameLabel, metaRow, priceRow, stockLabel, addToCartBtn);
+
         card.getChildren().addAll(imageArea, details);
+        card.setOnMouseClicked(e -> openProduct(product));
+
         return card;
     }
 
@@ -272,6 +298,7 @@ public class ProductCatalogController {
 
     @FXML private void onCart() { SceneRouter.navigateTo("cart.fxml"); }
     @FXML private void onMyOrders() { SceneRouter.navigateTo("my_orders.fxml"); }
+    @FXML private void onMyReviews() { SceneRouter.navigateTo("my_orders.fxml"); }
     @FXML private void onLogout() {
         activityLogService.logCurrentUser("LOGOUT", "User logged out.");
         SessionManager.getInstance().logout();
@@ -295,8 +322,7 @@ public class ProductCatalogController {
 
     private void openProduct(Product product) {
         activityLogService.logCurrentUser("VIEW_PRODUCT", "Viewed product #" + product.getId() + ": " + product.getName());
-        SceneRouter.transferData.put("selectedProduct", product);
-        SceneRouter.navigateTo("product_detail.fxml");
+        SceneRouter.navigateTo("product_detail.fxml", Map.of("selectedProduct", product));
     }
 
     private void applyCurrentView() {
@@ -328,7 +354,7 @@ public class ProductCatalogController {
     }
 
     @FXML private void refreshProducts() {
-        loadProducts("All Products");
+        loadProducts("all");
         AlertHelper.info("Products Refreshed", "Product catalog has been refreshed successfully.");
     }
 
@@ -336,7 +362,13 @@ public class ProductCatalogController {
         if (searchField != null) {
             searchField.clear();
         }
-        loadProducts("All Products");
+        loadProducts("all");
         AlertHelper.info("Filters Cleared", "All filters have been cleared.");
+    }
+
+    @Override
+    public void refresh() {
+        loadProducts("all");
+        AlertHelper.info("Products Refreshed", "Product catalog has been refreshed successfully.");
     }
 }

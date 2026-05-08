@@ -1,8 +1,11 @@
 package com.jvmart.controllers;
 
 import com.jvmart.models.Order;
+import com.jvmart.models.Review;
 import com.jvmart.services.ActivityLogService;
 import com.jvmart.services.OrderService;
+import com.jvmart.services.ReviewService;
+import com.jvmart.utils.GlobalRefresh;
 import com.jvmart.session.SessionManager;
 import com.jvmart.utils.AlertHelper;
 import com.jvmart.utils.SceneRouter;
@@ -18,7 +21,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-public class AdminDashboardController {
+public class AdminDashboardController implements GlobalRefresh.Refreshable {
     @FXML private Label totalSalesLabel;
     @FXML private Label ordersTodayLabel;
     @FXML private Label lowStockLabel;
@@ -31,9 +34,20 @@ public class AdminDashboardController {
     @FXML private TableColumn<Order, String> colTotal;
     @FXML private TableColumn<Order, String> colStatus;
     @FXML private TableColumn<Order, Void> colView;
+    
+    // Review management fields
+    @FXML private TableView<Review> recentReviewsTable;
+    @FXML private TableColumn<Review, String> colReviewId;
+    @FXML private TableColumn<Review, String> colProduct;
+    @FXML private TableColumn<Review, String> colReviewer;
+    @FXML private TableColumn<Review, String> colRating;
+    @FXML private TableColumn<Review, String> colComment;
+    @FXML private TableColumn<Review, String> colReviewDate;
+    @FXML private TableColumn<Review, Void> colReviewActions;
 
     private final OrderService orderService = new OrderService();
     private final ActivityLogService activityLogService = new ActivityLogService();
+    private final ReviewService reviewService = new ReviewService();
 
     @FXML
     public void initialize() {
@@ -138,6 +152,28 @@ public class AdminDashboardController {
     @FXML private void exportReport() { AlertHelper.info("Export Report", "Export is not configured yet."); }
     @FXML private void viewAllOrders() { SceneRouter.navigateTo("admin_orders.fxml"); }
     @FXML private void refreshDashboard() { 
+        loadDashboardStats();
+        AlertHelper.info("Dashboard Refreshed", "Dashboard data has been refreshed successfully.");
+    }
+
+    @FXML private void exportOrders() {
+        AlertHelper.info("Export Orders", "Order export functionality will be implemented soon.");
+    }
+
+    @FXML private void viewAllReviews() {
+        SceneRouter.navigateTo("admin_reviews.fxml");
+    }
+
+    @FXML private void viewReviewsAnalytics() {
+        SceneRouter.navigateTo("admin_reviews_analytics.fxml");
+    }
+
+    @FXML private void exportReviews() {
+        AlertHelper.info("Export Reviews", "Review export functionality will be implemented soon.");
+    }
+
+    @Override
+    public void refresh() {
         loadDashboardStats();
         AlertHelper.info("Dashboard Refreshed", "Dashboard data has been refreshed successfully.");
     }

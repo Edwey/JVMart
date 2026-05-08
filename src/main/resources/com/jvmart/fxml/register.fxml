@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.jvmart.controllers.RegisterController"
-           stylesheets="@../css/jvmart-dark.css"
            styleClass="app-root">
 
     <HBox maxWidth="940" maxHeight="600" alignment="CENTER" styleClass="register-card">

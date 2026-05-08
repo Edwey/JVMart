@@ -2,6 +2,7 @@ package com.jvmart.services;
 
 import com.jvmart.config.MySQLConnection;
 import com.jvmart.dao.mongo.ActivityLogDAO;
+import com.jvmart.dao.sql.CartDAO;
 import com.jvmart.dao.sql.OrderDAO;
 import com.jvmart.dao.sql.ProductDAO;
 import com.jvmart.dao.sql.UserDAO;
@@ -21,6 +22,7 @@ public class OrderService {
     private final OrderDAO orderDAO = new OrderDAO();
     private final ProductDAO productDAO = new ProductDAO();
     private final UserDAO userDAO = new UserDAO();
+    private final CartDAO cartDAO = new CartDAO();
     private final ActivityLogDAO activityLogDAO = new ActivityLogDAO();
 
     public ServiceResult<Integer> placeOrder() {
@@ -61,8 +63,9 @@ public class OrderService {
                     productDAO.updateStock(conn, item.productId(), lockedProduct.getStock() - item.quantity());
                 }
 
-                conn.commit();
+                cartDAO.clearCartForUser(conn, session.getCurrentUser().getId());
 
+                conn.commit();
                 Thread.startVirtualThread(() ->
                         activityLogDAO.log(session.getCurrentUser().getId(), "PLACE_ORDER",
                                 "Order #" + orderId + " placed."));

@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.jvmart.controllers.CheckoutController"
-            stylesheets="@../css/jvmart-dark.css"
             fitToWidth="true"
             styleClass="app-root">
 
@@ -20,7 +19,7 @@
             <VBox spacing="20" HBox.hgrow="ALWAYS">
                 <VBox styleClass="card" spacing="0">
                     <Label text="Order Summary" styleClass="checkout-section-title"/>
-                    <VBox fx:id="checkoutItemsList" spacing="0"/>
+                    <VBox fx:id="cartItemsList" spacing="0"/>
                 </VBox>
 
                 <VBox styleClass="card" spacing="0">
@@ -87,7 +86,7 @@
             </VBox>
         </FlowPane>
 
-        <Button text="&lt;- Return to cart" styleClass="btn-ghost btn-return-cart" onAction="#returnToCart">
+        <Button text="&lt;- Return to cart" styleClass="btn-ghost btn-return-cart" onAction="#backToCart">
             <VBox.margin><Insets top="12"/></VBox.margin>
         </Button>
     </VBox>

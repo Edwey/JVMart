@@ -1,13 +1,15 @@
 package com.jvmart.utils;
 
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
-import javafx.scene.layout.Region;
 
-public class AlertHelper {
+/** Dialogs themed via {@link ThemeManager}. */
+public final class AlertHelper {
+
+    private AlertHelper() {}
+
     public static void info(String message) {
         showAlert(AlertType.INFORMATION, "Information", message);
     }
@@ -32,42 +34,32 @@ public class AlertHelper {
         showAlert(AlertType.ERROR, title, message);
     }
 
+    private static void attachTheme(DialogPane dialogPane) {
+        dialogPane.setMinWidth(400);
+        dialogPane.setPrefWidth(450);
+        ThemeManager.applyThemeToDialog(dialogPane);
+    }
+
     private static void showAlert(AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
-
-        DialogPane dialogPane = alert.getDialogPane();
-        
-        // Set minimum width for better readability
-        dialogPane.setMinWidth(400);
-        dialogPane.setPrefWidth(450);
-        
-        // Apply dark theme styling
-        dialogPane.getStylesheets().add(
-            AlertHelper.class.getResource("/com/jvmart/css/jvmart-dark.css").toExternalForm()
-        );
-        
-        // Style the dialog pane itself
-        dialogPane.setStyle(
-            "-fx-background-color: #231F20;"
-        );
-        
-        // Style buttons
-        for (ButtonType buttonType : dialogPane.getButtonTypes()) {
-            Node button = dialogPane.lookupButton(buttonType);
-            if (button != null) {
-                button.setStyle(
-                    "-fx-background-color: #BB4430;" +
-                    "-fx-text-fill: #EFE6DD;" +
-                    "-fx-font-weight: bold;" +
-                    "-fx-background-radius: 8;" +
-                    "-fx-padding: 8 16 8 16;"
-                );
-            }
-        }
-
+        attachTheme(alert.getDialogPane());
         alert.showAndWait();
+    }
+
+    public static boolean confirm(String title, String message, Runnable onConfirm) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        attachTheme(alert.getDialogPane());
+
+        boolean result = alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK;
+        if (result && onConfirm != null) {
+            onConfirm.run();
+        }
+        return result;
     }
 }

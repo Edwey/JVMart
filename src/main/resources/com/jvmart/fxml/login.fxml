@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane styleClass="app-root" stylesheets="@../css/jvmart-dark.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jvmart.controllers.LoginController">
+<StackPane styleClass="app-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jvmart.controllers.LoginController">
     
     <!-- Theme Toggle Button -->
     <Button onAction="#onToggleTheme" styleClass="btn-theme" text="Theme" StackPane.alignment="TOP_RIGHT">

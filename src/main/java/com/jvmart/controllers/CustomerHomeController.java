@@ -195,8 +195,7 @@ public class CustomerHomeController {
 
     private void openProduct(Product product) {
         activityLogService.logCurrentUser("VIEW_PRODUCT", "Viewed product #" + product.getId() + ": " + product.getName());
-        SceneRouter.transferData.put("selectedProduct", product);
-        SceneRouter.navigateTo("product_detail.fxml");
+        SceneRouter.navigateTo("product_detail.fxml", java.util.Map.of("selectedProduct", product));
     }
 
     @FXML
@@ -216,26 +215,22 @@ public class CustomerHomeController {
 
     @FXML
     private void onElectronics() {
-        SceneRouter.transferData.put("catalogCategory", "Electronics");
-        SceneRouter.navigateTo("product_catalog.fxml");
+        SceneRouter.navigateTo("product_catalog.fxml", java.util.Map.of("catalogCategory", "Electronics"));
     }
 
     @FXML
     private void onClothing() {
-        SceneRouter.transferData.put("catalogCategory", "Clothing");
-        SceneRouter.navigateTo("product_catalog.fxml");
+        SceneRouter.navigateTo("product_catalog.fxml", java.util.Map.of("catalogCategory", "Clothing"));
     }
 
     @FXML
     private void onHomeLiving() {
-        SceneRouter.transferData.put("catalogCategory", "Home & Living");
-        SceneRouter.navigateTo("product_catalog.fxml");
+        SceneRouter.navigateTo("product_catalog.fxml", java.util.Map.of("catalogCategory", "Home & Living"));
     }
 
     @FXML
     private void onEditorial() {
-        SceneRouter.transferData.put("catalogCategory", "Editorial");
-        SceneRouter.navigateTo("product_catalog.fxml");
+        SceneRouter.navigateTo("product_catalog.fxml", java.util.Map.of("catalogCategory", "Editorial"));
     }
 
     @FXML

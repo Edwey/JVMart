@@ -56,4 +56,23 @@ public class ReviewDAO {
             case null, default -> 0.0;
         };
     }
+
+    public List<Review> findAllReviews() {
+        List<Review> reviews = new ArrayList<>();
+        var collection = MongoConnection.getDatabase().getCollection(COLLECTION_NAME);
+        for (var doc : collection.find()) {
+            Review review = new Review(
+                    doc.getInteger(PRODUCT_ID),
+                    doc.getInteger("userId"),
+                    doc.getString("username"),
+                    doc.getInteger("rating"),
+                    doc.getString("comment"),
+                    doc.getDate("createdAt").toInstant()
+                            .atZone(java.time.ZoneId.systemDefault())
+                            .toLocalDateTime()
+            );
+            reviews.add(review);
+        }
+        return reviews;
+    }
 }

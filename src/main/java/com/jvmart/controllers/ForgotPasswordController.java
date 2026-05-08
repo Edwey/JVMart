@@ -57,7 +57,7 @@ public class ForgotPasswordController {
         }
         if (token == null || token.trim().isEmpty()) {
             if (tokenError != null) {
-                tokenError.setText("Reset token is required");
+                tokenError.setText("Recovery code is required");
                 show(tokenError);
             }
             hasError = true;
@@ -88,7 +88,7 @@ public class ForgotPasswordController {
                 if (!token.equals(expectedToken)) {
                     Platform.runLater(() -> {
                         if (tokenError != null) {
-                            tokenError.setText("Invalid reset token. Use the part before @ in your email.");
+                            tokenError.setText("Invalid recovery code — use exactly the username part before @ in your email.");
                             show(tokenError);
                         }
                     });

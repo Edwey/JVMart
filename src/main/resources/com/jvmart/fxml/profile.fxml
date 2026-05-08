@@ -15,7 +15,6 @@
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.jvmart.controllers.ProfileController"
             fitToWidth="true"
-            stylesheets="@../css/jvmart-dark.css"
             styleClass="app-root transparent-scroll">
 
     <VBox spacing="24">

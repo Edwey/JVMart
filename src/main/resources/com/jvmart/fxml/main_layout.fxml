@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.SVGPath?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.jvmart.controllers.MainShellController"
-            stylesheets="@../css/jvmart-dark.css"
             styleClass="app-root">
 
     <top>
@@ -36,10 +35,10 @@
             <Region HBox.hgrow="ALWAYS"/>
 
             <HBox alignment="CENTER" spacing="16.0">
-                <Button fx:id="cartBtn" onAction="#openCart" styleClass="cart-btn">
+                <Button fx:id="cartBtn" onAction="#openCart" styleClass="cart-btn" contentDisplay="GRAPHIC_ONLY">
                     <graphic>
                         <StackPane styleClass="cart-icon-wrap">
-                            <SVGPath content="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1H5.21l-.94-2H1z" styleClass="cart-icon"/>
+                            <SVGPath content="M 7 18 c -1.1 0 -2 0.9 -2 2 s 0.9 2 2 2 s 2 -0.9 2 -2 s -0.9 -2 -2 -2 s -2 -0.9 -2 -2 z M 1 2 v 2 h 2 l 3.6 7.59 -1.35 2.45 c -0.16 0.28 -0.25 0.61 -0.25 0.96 c 0 1.1 0.9 2 2 2 h 12 v -2 H 7.42 c -0.14 0 -0.25 -0.11 -0.25 -0.25 l 0.03 -0.12 0.9 -1.63 h 7.45 c 0.75 0 1.41 -0.41 1.75 -1.03 l 3.58 -6.49 c 0.08 -0.14 0.12 -0.31 0.12 -0.48 c 0 -0.55 -0.45 -1 -1 -1 H 5.21 l -0.94 -2 H 1 z" styleClass="cart-icon"/>
                             <Label fx:id="cartBadge" text="0" styleClass="cart-badge" translateX="8.0" translateY="-8.0"/>
                         </StackPane>
                     </graphic>

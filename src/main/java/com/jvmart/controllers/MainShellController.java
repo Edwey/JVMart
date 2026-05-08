@@ -46,7 +46,8 @@ public class MainShellController {
         Parent content = SceneRouter.loadFXML("/com/jvmart/fxml/" + contentFxml);
         contentArea.getChildren().setAll(content);
         updateActiveNav(contentFxml);
-        updateCategoryStyle((String) SceneRouter.transferData.getOrDefault("catalogCategory", "all"));
+        updateCategoryStyle((String) java.util.Objects.requireNonNullElse(
+                SceneRouter.getNavigationArgument("catalogCategory"), "all"));
     }
 
     private void updateActiveNav(String contentFxml) {
@@ -55,8 +56,7 @@ public class MainShellController {
         setNavStyle(navOrders, false);
         setNavStyle(navProfile, false);
         if (cartBtn != null) {
-            cartBtn.getStyleClass().removeAll("btn-primary", "btn-secondary");
-            cartBtn.getStyleClass().add("btn-secondary");
+            cartBtn.getStyleClass().remove("cart-btn-active");
         }
 
         if ("customer_home.fxml".equals(contentFxml)) {
@@ -70,10 +70,7 @@ public class MainShellController {
         } else if ("cart.fxml".equals(contentFxml)) {
             setNavStyle(navProducts, true);
             if (cartBtn != null) {
-                cartBtn.getStyleClass().remove("btn-secondary");
-                if (!cartBtn.getStyleClass().contains("btn-primary")) {
-                    cartBtn.getStyleClass().add("btn-primary");
-                }
+                cartBtn.getStyleClass().add("cart-btn-active");
             }
         } else if ("checkout.fxml".equals(contentFxml) || "order_confirmation.fxml".equals(contentFxml)) {
             setNavStyle(navProducts, true);
@@ -115,9 +112,7 @@ public class MainShellController {
     }
 
     private void openCatalogCategory(String category) {
-        SceneRouter.transferData.put("catalogCategory", category);
-        updateCategoryStyle(category);
-        SceneRouter.navigateTo("product_catalog.fxml");
+        SceneRouter.navigateTo("product_catalog.fxml", java.util.Map.of("catalogCategory", category));
     }
 
     private void updateCartBadge() {

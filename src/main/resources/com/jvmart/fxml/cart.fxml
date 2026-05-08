@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.jvmart.controllers.CartController"
-      stylesheets="@../css/jvmart-dark.css"
       spacing="0" styleClass="app-root">
 
     <HBox alignment="CENTER_LEFT" spacing="16" styleClass="cart-back-row">
@@ -74,6 +73,10 @@
             <Button fx:id="checkoutBtn" text="Proceed to checkout" styleClass="btn-primary btn-full btn-checkout" onAction="#proceedToCheckout"/>
 
             <Label text="Free shipping on orders over GHS 500" styleClass="form-hint cart-shipping-hint" wrapText="true"/>
+
+            <Button text="View Wishlist" styleClass="btn-ghost-enhanced btn-wishlist-view" onAction="#viewWishlist">
+                <VBox.margin><Insets top="12"/></VBox.margin>
+            </Button>
         </VBox>
     </HBox>
 </VBox>

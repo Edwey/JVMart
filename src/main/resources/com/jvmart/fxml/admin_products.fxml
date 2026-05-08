@@ -3,8 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.jvmart.controllers.AdminProductsController"
-           stylesheets="@../css/jvmart-dark.css">
+           fx:controller="com.jvmart.controllers.AdminProductsController">
 
     <VBox spacing="0" styleClass="app-root admin-page">
         <padding>

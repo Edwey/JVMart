@@ -20,9 +20,9 @@ public class OrderConfirmationController {
 
     @FXML
     public void initialize() {
-        Object orderId = SceneRouter.transferData.get("lastOrderId");
-        if (orderId != null) {
-            orderIdLabel.setText("#JV-" + String.format("%04d", (int)orderId));
+        Object orderId = SceneRouter.getNavigationArgument("lastOrderId");
+        if (orderId instanceof Number num) {
+            orderIdLabel.setText("#JV-" + String.format("%04d", num.intValue()));
         }
 
         User user = SessionManager.getInstance().getCurrentUser();

@@ -81,8 +81,8 @@ public class AdminCustomersController {
                 viewOrdersBtn.setOnAction(e -> {
                     javafx.scene.control.TableRow<User> row = getTableRow();
                     if (row != null && row.getItem() != null) {
-                        com.jvmart.utils.SceneRouter.transferData.put("filterUserId", row.getItem().getId());
-                        SceneRouter.navigateTo("admin_orders.fxml");
+                        SceneRouter.navigateTo("admin_orders.fxml",
+                                java.util.Map.of("filterUserId", row.getItem().getId()));
                     }
                 });
                 

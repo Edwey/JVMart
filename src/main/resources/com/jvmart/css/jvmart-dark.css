@@ -158,6 +158,9 @@
     -fx-border-color: #2a2627;
     -fx-border-radius: 8;
     -fx-cursor: hand;
+    /* Layout parity with light mode */
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
 }
 
 .btn-theme:hover, .btn-logout:hover, .btn-logout-sidebar:hover, .cart-btn:hover, .profile-btn:hover {
@@ -167,10 +170,14 @@
 .btn-logout, .btn-logout-sidebar {
     -fx-text-fill: #F3DFA2;
     -fx-border-color: rgba(243, 223, 162, 0.2);
+    /* Layout parity with light mode */
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
 }
 
 .cart-btn, .profile-btn {
-    -fx-padding: 10 12 10 12;
+    /* Match light: these controls are icon-style buttons in the top bar */
+    -fx-padding: 8 12;
 }
 
 .btn-secondary {
@@ -179,6 +186,9 @@
     -fx-font-weight: bold;
     -fx-background-radius: 8;
     -fx-cursor: hand;
+    /* Layout parity with light mode */
+    -fx-font-size: 14px;
+    -fx-padding: 12px;
 }
 
 .btn-secondary:hover {
@@ -193,6 +203,9 @@
     -fx-border-radius: 8;
     -fx-background-radius: 8;
     -fx-cursor: hand;
+    /* Layout parity with light mode */
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
 }
 
 .btn-outline:hover {
@@ -204,6 +217,41 @@
     -fx-text-fill: #BB4430;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+    /* Layout parity with light mode */
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+}
+
+/* Export button: keep dark colors but match light sizing/flair */
+.btn-export {
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+/* Filter tabs: match light sizes so the active tab highlight feels identical */
+.filter-tab {
+    -fx-font-size: 14px;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 8;
+}
+
+.filter-tab-active {
+    -fx-font-size: 14px;
+    -fx-padding: 8 16 8 16;
+    -fx-border-width: 0 0 0 4;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+/* Pagination: match light sizing */
+.pagination-btn, .pagination-btn-active {
+    -fx-padding: 6 12 6 12;
+    -fx-background-radius: 8;
+    -fx-font-weight: bold;
 }
 
 .btn-ghost:hover {
@@ -257,14 +305,15 @@
 }
 
 .navbar-link {
-    -fx-font-family: "Manrope";
-    -fx-font-weight: bold;
-    -fx-font-size: 15px;
+    /* Match light-mode sizing/arrangement (layout parity) */
+    -fx-font-family: "Inter";
+    -fx-font-weight: 600;
+    -fx-font-size: 14px;
     -fx-text-fill: #F3DFA2;
     -fx-cursor: hand;
     -fx-background-color: transparent;
-    -fx-padding: 6 0 6 0;
-    -fx-background-radius: 0;
+    -fx-padding: 8 16;
+    -fx-background-radius: 8;
 }
 
 .navbar-link:hover {
@@ -272,17 +321,18 @@
 }
 
 .navbar-link-active {
-    -fx-font-family: "Manrope";
-    -fx-font-weight: bold;
-    -fx-font-size: 15px;
+    /* Match light-mode sizing; keep dark active underline */
+    -fx-font-family: "Inter";
+    -fx-font-weight: 600;
+    -fx-font-size: 14px;
     -fx-text-fill: #BB4430;
     -fx-cursor: hand;
     -fx-background-color: transparent;
-    -fx-padding: 6 0 6 0;
+    -fx-padding: 8 16;
     -fx-border-color: transparent transparent #BB4430 transparent;
     -fx-border-width: 0 0 2 0;
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
 }
 
 .nav-link-active {
@@ -382,9 +432,10 @@
     -fx-font-weight: 500;
     -fx-font-size: 14px;
     -fx-alignment: CENTER_LEFT;
-    -fx-padding: 12 24 12 24;
+    /* Match light-mode spacing */
+    -fx-padding: 12 16;
     -fx-cursor: hand;
-    -fx-background-radius: 0;
+    -fx-background-radius: 8;
     -fx-border-width: 0;
 }
 
@@ -397,10 +448,11 @@
     -fx-background-color: rgba(187, 68, 48, 0.15);
     -fx-text-fill: #BB4430;
     -fx-font-family: "Inter";
-    -fx-font-weight: bold;
+    -fx-font-weight: 700;
     -fx-font-size: 14px;
     -fx-alignment: CENTER_LEFT;
-    -fx-padding: 12 24 12 20;
+    /* Match light-mode padding while preserving left-rail active border */
+    -fx-padding: 12 16 12 12;
     -fx-cursor: hand;
     -fx-border-color: #BB4430;
     -fx-border-width: 0 0 0 4;
@@ -936,6 +988,31 @@
     -fx-background-radius: 12px;
 }
 
+/* Catalog enhanced controls (used by product_catalog.fxml) */
+.search-bar-enhanced {
+    -fx-background-color: #1a1718;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.search-input-enhanced {
+    -fx-background-color: transparent;
+    -fx-text-fill: #EFE6DD;
+    -fx-prompt-text-fill: rgba(126, 189, 194, 0.75);
+    -fx-padding: 16 16 16 48;
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-pref-height: 52px;
+}
+
+.search-icon-label-enhanced {
+    -fx-text-fill: #7EBDC2;
+    -fx-font-size: 16px;
+    -fx-padding: 0 0 0 16;
+}
+
 .search-bar-admin {
     -fx-pref-height: 42px;
     -fx-pref-width: 220px;
@@ -988,6 +1065,83 @@
     -fx-pref-width: 190px;
     -fx-pref-height: 52px;
     -fx-text-fill: #EFE6DD;
+}
+
+.sort-combo-enhanced {
+    -fx-background-color: #1a1718;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 8 12;
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-pref-width: 190px;
+    -fx-pref-height: 52px;
+    -fx-text-fill: #EFE6DD;
+}
+
+.sort-label {
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #7EBDC2;
+}
+
+.btn-filter, .btn-reviews, .btn-refresh {
+    -fx-background-color: #1a1718;
+    -fx-text-fill: #EFE6DD;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 10 14;
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+}
+
+.btn-filter:hover, .btn-reviews:hover, .btn-refresh:hover {
+    -fx-background-color: #231F20;
+    -fx-border-color: #BB4430;
+}
+
+/* Wishlist + product reviews pages */
+.wishlist-list {
+    -fx-padding: 0 0 0 0;
+}
+
+.wishlist-card {
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+}
+
+.wishlist-item-name {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #EFE6DD;
+}
+
+.review-card {
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+}
+
+.review-user {
+    -fx-font-family: "Inter";
+    -fx-font-weight: 700;
+    -fx-text-fill: #EFE6DD;
+}
+
+.review-body {
+    -fx-text-fill: #7EBDC2;
+    -fx-font-size: 13px;
 }
 
 .btn-dark {
@@ -1255,6 +1409,7 @@
 /* ===================== */
 .label {
     -fx-text-fill: #EFE6DD;
+    -fx-font-family: "Inter";
 }
 
 .label-muted {
@@ -1272,6 +1427,22 @@
     -fx-text-fill: #EFE6DD;
     -fx-font-family: "Manrope";
     -fx-font-weight: 900;
+}
+
+/* Explicit typography scale parity */
+.page-title { -fx-font-size: 32px; }
+.section-title { -fx-font-size: 24px; }
+
+/* Base button defaults (match light layout; colors come from .btn-* rules) */
+.button {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    /* Keep subtle hover without changing layout */
 }
 
 .page-subtitle {
@@ -1300,6 +1471,133 @@
 /* ===================== */
 /* CUSTOMER HOME PAGE */
 /* ===================== */
+.hero-banner-enhanced {
+    /* Layout parity with light mode */
+    -fx-background-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 48 40 48 40;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 6);
+
+    /* Dark theme colors */
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #231F20 0%, #1a1718 100%);
+    -fx-border-color: #2a2627;
+}
+
+.hero-greeting {
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #7EBDC2;
+}
+
+.hero-title-enhanced {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 800;
+    -fx-font-size: 36px;
+    -fx-text-fill: #EFE6DD;
+}
+
+.hero-subtitle-enhanced {
+    -fx-font-family: "Inter";
+    -fx-font-size: 16px;
+    -fx-text-fill: #7EBDC2;
+}
+
+.btn-hero-primary-enhanced {
+    /* Layout parity */
+    -fx-font-weight: 600;
+    -fx-background-radius: 8;
+    -fx-padding: 14 28;
+
+    /* Dark colors */
+    -fx-background-color: #BB4430;
+    -fx-text-fill: #EFE6DD;
+}
+
+.btn-hero-primary-enhanced:hover {
+    -fx-background-color: #d65540;
+}
+
+.btn-hero-secondary-enhanced {
+    /* Layout parity */
+    -fx-background-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 14 28;
+    -fx-font-weight: 600;
+
+    /* Dark colors */
+    -fx-text-fill: #7EBDC2;
+    -fx-border-color: #7EBDC2;
+}
+
+.btn-hero-secondary-enhanced:hover {
+    -fx-background-color: rgba(126, 189, 194, 0.12);
+    -fx-text-fill: #EFE6DD;
+}
+
+.section-title-enhanced {
+    -fx-font-family: "Manrope";
+    -fx-font-weight: 800;
+    -fx-font-size: 22px;
+    -fx-text-fill: #EFE6DD;
+    -fx-padding: 8 0 0 0;
+}
+
+.stats-section-enhanced {
+    -fx-padding: 0 0 32 0;
+}
+
+.stat-card-enhanced {
+    /* Layout parity */
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 10, 0, 0, 5);
+
+    /* Dark colors */
+    -fx-background-color: #1a1718;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+}
+
+.stat-icon-enhanced {
+    -fx-background-radius: 10;
+    -fx-padding: 12;
+    -fx-min-width: 48px;
+    -fx-min-height: 48px;
+    -fx-alignment: center;
+}
+
+.stat-icon-cart-enhanced { -fx-background-color: rgba(126, 189, 194, 0.14); }
+.stat-icon-pending-enhanced { -fx-background-color: rgba(243, 223, 162, 0.14); }
+.stat-icon-completed-enhanced { -fx-background-color: rgba(126, 189, 194, 0.22); }
+
+.stat-icon-svg-enhanced { -fx-fill: #EFE6DD; }
+.stat-icon-svg-pending-enhanced { -fx-fill: #F3DFA2; }
+.stat-icon-svg-completed-enhanced { -fx-fill: #7EBDC2; }
+
+.stat-label-enhanced {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7EBDC2;
+}
+
+.stat-value-enhanced {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 26px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #EFE6DD;
+}
+
+.stat-value-pending-enhanced { -fx-text-fill: #BB4430; }
+.stat-value-completed-enhanced { -fx-text-fill: #7EBDC2; }
+
+.stat-hint-enhanced {
+    -fx-font-size: 11px;
+    -fx-text-fill: rgba(126, 189, 194, 0.75);
+}
+
 .hero-banner {
     -fx-background-color: #1a1718;
     -fx-background-radius: 16;
@@ -1493,6 +1791,33 @@
     -fx-text-fill: #EFE6DD;
 }
 
+.catalog-rating-row {
+    -fx-spacing: 2;
+    -fx-alignment: center-left;
+}
+
+.catalog-star {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.catalog-rating-avg {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.catalog-product-price {
+    -fx-font-size: 20px;
+}
+
+.catalog-original-price {
+    -fx-font-size: 13px;
+}
+
+.label-strikethrough {
+    -fx-strikethrough: true;
+}
+
 .product-category-tag {
     -fx-font-family: "Inter";
     -fx-font-size: 12px;
@@ -1627,7 +1952,8 @@
 
 .star-btn {
     -fx-background-color: transparent;
-    -fx-text-fill: #F3DFA2;
+    /* Empty stars in dark theme */
+    -fx-text-fill: #7EBDC2;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
@@ -1635,6 +1961,32 @@
 
 .star-btn:hover {
     -fx-text-fill: #BB4430;
+}
+
+.star-btn-filled {
+    -fx-text-fill: #F3DFA2;
+}
+
+.star-btn-filled:hover {
+    -fx-text-fill: #BB4430;
+}
+
+.review-star-filled {
+    -fx-text-fill: #F3DFA2;
+}
+
+.review-star-empty {
+    -fx-text-fill: #7EBDC2;
+    -fx-opacity: 0.75;
+}
+
+.admin-star-filled {
+    -fx-text-fill: #F3DFA2;
+}
+
+.admin-star-empty {
+    -fx-text-fill: #7EBDC2;
+    -fx-opacity: 0.7;
 }
 
 .btn-add-cart {
@@ -1649,6 +2001,18 @@
 
 .btn-add-cart:hover {
     -fx-background-color: #d65540;
+}
+
+.btn-wishlist {
+    -fx-min-width: 76px;
+    -fx-pref-width: 76px;
+    -fx-pref-height: 50px;
+    -fx-font-size: 14px;
+}
+
+.btn-wishlist-active {
+    -fx-border-color: #BB4430;
+    -fx-border-width: 1.5;
 }
 
 .btn-out-of-stock {

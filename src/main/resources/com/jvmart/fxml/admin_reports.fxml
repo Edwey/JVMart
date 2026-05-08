@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.jvmart.controllers.AdminReportsController"
-            stylesheets="@../css/jvmart-dark.css"
             fitToWidth="true"
             styleClass="app-root transparent-scroll">
 

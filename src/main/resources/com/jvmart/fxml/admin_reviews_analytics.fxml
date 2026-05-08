@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.jvmart.controllers.AdminReviewsAnalyticsController"
+      spacing="0" styleClass="app-root">
+
+    <padding>
+        <Insets top="32" right="32" bottom="32" left="32"/>
+    </padding>
+
+    <!-- Header -->
+    <VBox spacing="16">
+        <Label text="Reviews Analytics Dashboard" styleClass="page-title"/>
+        <Label text="Comprehensive insights into customer reviews and ratings" styleClass="page-subtitle"/>
+    </VBox>
+
+    <!-- Analytics Cards -->
+    <HBox spacing="20" styleClass="analytics-cards-container">
+        <VBox styleClass="analytics-card" spacing="12" prefWidth="200">
+            <Label text="Total Reviews" styleClass="analytics-card-title"/>
+            <Label fx:id="totalReviewsLabel" text="0" styleClass="analytics-card-value"/>
+            <Label fx:id="reviewsGrowthLabel" text="+0% this month" styleClass="analytics-card-change"/>
+        </VBox>
+        
+        <VBox styleClass="analytics-card" spacing="12" prefWidth="200">
+            <Label text="Average Rating" styleClass="analytics-card-title"/>
+            <Label fx:id="avgRatingLabel" text="0.0" styleClass="analytics-card-value"/>
+            <Label fx:id="ratingChangeLabel" text="+0.0 this month" styleClass="analytics-card-change"/>
+        </VBox>
+        
+        <VBox styleClass="analytics-card" spacing="12" prefWidth="200">
+            <Label text="5-Star Reviews" styleClass="analytics-card-title"/>
+            <Label fx:id="fiveStarLabel" text="0%" styleClass="analytics-card-value"/>
+            <Label fx:id="fiveStarChangeLabel" text="+0% this month" styleClass="analytics-card-change"/>
+        </VBox>
+        
+        <VBox styleClass="analytics-card" spacing="12" prefWidth="200">
+            <Label text="Response Rate" styleClass="analytics-card-title"/>
+            <Label fx:id="responseRateLabel" text="0%" styleClass="analytics-card-value"/>
+            <Label fx:id="responseChangeLabel" text="+0% this month" styleClass="analytics-card-change"/>
+        </VBox>
+    </HBox>
+
+    <!-- Charts Section -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Rating Distribution Chart -->
+        <VBox spacing="16" HBox.hgrow="ALWAYS" styleClass="chart-container">
+            <Label text="Rating Distribution" styleClass="section-title"/>
+            <BarChart fx:id="ratingDistributionChart" VBox.vgrow="ALWAYS" styleClass="analytics-chart">
+                <xAxis>
+                    <CategoryAxis fx:id="ratingXAxis" label="Rating"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="ratingYAxis" label="Count"/>
+                </yAxis>
+            </BarChart>
+        </VBox>
+
+        <!-- Reviews Trend Chart -->
+        <VBox spacing="16" HBox.hgrow="ALWAYS" styleClass="chart-container">
+            <Label text="Reviews Trend (Last 30 Days)" styleClass="section-title"/>
+            <LineChart fx:id="reviewsTrendChart" VBox.vgrow="ALWAYS" styleClass="analytics-chart">
+                <xAxis>
+                    <CategoryAxis fx:id="trendXAxis" label="Date"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="trendYAxis" label="Reviews"/>
+                </yAxis>
+            </LineChart>
+        </VBox>
+    </HBox>
+
+    <!-- Category Performance -->
+    <VBox spacing="16" styleClass="category-section">
+        <Label text="Reviews by Category" styleClass="section-title"/>
+        <TableView fx:id="categoryTable" prefHeight="200" styleClass="table-view analytics-table">
+            <columns>
+                <TableColumn fx:id="colCategory" text="Category" prefWidth="200"/>
+                <TableColumn fx:id="colCategoryReviews" text="Reviews" prefWidth="100"/>
+                <TableColumn fx:id="colCategoryAvgRating" text="Avg Rating" prefWidth="100"/>
+                <TableColumn fx:id="colCategoryTrend" text="Trend" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Action Buttons -->
+    <HBox spacing="12" alignment="CENTER_RIGHT">
+        <Button text="📥 Export Analytics" styleClass="btn-secondary" onAction="#exportAnalytics"/>
+        <Button text="🔄 Refresh" styleClass="btn-primary" onAction="#refreshAnalytics"/>
+    </HBox>
+</VBox>

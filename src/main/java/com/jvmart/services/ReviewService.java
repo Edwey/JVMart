@@ -62,4 +62,25 @@ public class ReviewService {
             return new ServiceResult.Failure<>("Failed to get average rating: " + e.getMessage());
         }
     }
+
+    public ServiceResult<List<Review>> getReviewsForUser(int userId) {
+        try {
+            List<Review> allReviews = reviewDAO.findAllReviews();
+            List<Review> userReviews = allReviews.stream()
+                    .filter(review -> review.userId() == userId)
+                    .collect(java.util.stream.Collectors.toList());
+            return new ServiceResult.Success<>(userReviews);
+        } catch (Exception e) {
+            return new ServiceResult.Failure<>("Failed to get user reviews: " + e.getMessage());
+        }
+    }
+
+    public ServiceResult<List<Review>> getAllReviews() {
+        try {
+            List<Review> allReviews = reviewDAO.findAllReviews();
+            return new ServiceResult.Success<>(allReviews);
+        } catch (Exception e) {
+            return new ServiceResult.Failure<>("Failed to get all reviews: " + e.getMessage());
+        }
+    }
 }

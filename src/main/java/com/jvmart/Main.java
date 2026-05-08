@@ -2,6 +2,7 @@ package com.jvmart;
 
 import com.jvmart.utils.SceneRouter;
 import com.jvmart.utils.ThemeManager;
+import com.jvmart.utils.GlobalRefresh;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
@@ -30,6 +31,13 @@ public class Main extends Application {
         } catch (Exception e) {
             LOGGER.warning("Could not load application icon: " + e.getMessage());
         }
+        
+        // Register global refresh handler after scene is created
+        javafx.application.Platform.runLater(() -> {
+            if (stage.getScene() != null) {
+                GlobalRefresh.registerRefreshHandler(stage.getScene());
+            }
+        });
         
         // Initial navigation to Login
         SceneRouter.navigateTo("login.fxml");

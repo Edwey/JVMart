@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.jvmart.controllers.AdminReviewsController"
+      spacing="0" styleClass="app-root">
+
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+        <VBox spacing="32" styleClass="admin-reviews-content" alignment="TOP_LEFT">
+            
+            <!-- Header Section -->
+            <VBox spacing="16">
+                <HBox alignment="BASELINE_LEFT" spacing="20">
+                    <Label text="Review Management" styleClass="page-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox spacing="12" alignment="CENTER_RIGHT">
+                        <Button text="📥 Export Reviews" styleClass="btn-secondary" onAction="#exportReviews"/>
+                        <Button text="🔄 Refresh" styleClass="btn-secondary" onAction="#refreshReviews"/>
+                    </HBox>
+                </HBox>
+                <Label text="Manage and moderate all product reviews and ratings." styleClass="page-subtitle"/>
+            </VBox>
+
+            <!-- Filters Section -->
+            <VBox spacing="16" styleClass="card-surface">
+                <Label text="FILTER REVIEWS" styleClass="section-title"/>
+                <HBox spacing="16" alignment="CENTER_LEFT">
+                    <VBox spacing="8">
+                        <Label text="Rating Filter" styleClass="form-label"/>
+                        <ComboBox fx:id="ratingFilter" prefWidth="150" styleClass="combo-box-jv"/>
+                    </VBox>
+                    <VBox spacing="8">
+                        <Label text="Search" styleClass="form-label"/>
+                        <TextField fx:id="searchField" prefWidth="250" promptText="Search reviews..." styleClass="text-field-jv"/>
+                    </VBox>
+                    <VBox spacing="8">
+                        <Label text="Date Range" styleClass="form-label"/>
+                        <HBox spacing="8">
+                            <DatePicker fx:id="startDate" prefWidth="120" styleClass="date-picker-jv"/>
+                            <Label text="to" styleClass="label-muted"/>
+                            <DatePicker fx:id="endDate" prefWidth="120" styleClass="date-picker-jv"/>
+                        </HBox>
+                    </VBox>
+                    <VBox spacing="8">
+                        <Label text=" " styleClass="form-label"/>
+                        <Button text="Apply Filters" styleClass="btn-primary" onAction="#applyFilters"/>
+                        <Button text="Clear Filters" styleClass="btn-secondary" onAction="#clearFilters"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Reviews Table -->
+            <VBox spacing="16">
+                <HBox alignment="BASELINE_LEFT">
+                    <Label text="All Reviews" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="reviewCountLabel" text="0 reviews" styleClass="label-muted"/>
+                </HBox>
+                
+                <TableView fx:id="reviewsTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+                    <columns>
+                        <TableColumn fx:id="colReviewId" text="ID" prefWidth="80"/>
+                        <TableColumn fx:id="colProduct" text="PRODUCT" prefWidth="180"/>
+                        <TableColumn fx:id="colReviewer" text="REVIEWER" prefWidth="150"/>
+                        <TableColumn fx:id="colRating" text="RATING" prefWidth="100"/>
+                        <TableColumn fx:id="colComment" text="COMMENT" prefWidth="250"/>
+                        <TableColumn fx:id="colDate" text="DATE" prefWidth="120"/>
+                        <TableColumn fx:id="colStatus" text="STATUS" prefWidth="100"/>
+                        <TableColumn fx:id="colActions" text="ACTIONS" prefWidth="150"/>
+                    </columns>
+                </TableView>
+
+                <!-- Pagination -->
+                <HBox alignment="CENTER_RIGHT" spacing="8">
+                    <Button text="← Previous" styleClass="pagination-btn" onAction="#prevPage"/>
+                    <Button fx:id="page1Btn" text="1" styleClass="pagination-btn-active"/>
+                    <Button fx:id="page2Btn" text="2" styleClass="pagination-btn" onAction="#goPage2"/>
+                    <Button fx:id="page3Btn" text="3" styleClass="pagination-btn" onAction="#goPage3"/>
+                    <Button text="Next →" styleClass="pagination-btn" onAction="#nextPage"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</VBox>

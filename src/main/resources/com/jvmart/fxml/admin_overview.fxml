@@ -15,7 +15,6 @@
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.jvmart.controllers.AdminDashboardController"
             fitToWidth="true"
-            stylesheets="@../css/jvmart-dark.css"
             styleClass="transparent-scroll">
 
     <VBox spacing="48.0" styleClass="dashboard-content">
@@ -113,7 +112,7 @@
                     <Button text="📥 Export" styleClass="btn-export" onAction="#exportOrders"/>
                 </HBox>
             </HBox>
-            <TableView fx:id="recentOrdersTable" prefHeight="320" styleClass="table-view dashboard-table-enhanced">
+            <TableView fx:id="recentOrdersTable" prefHeight="280" styleClass="table-view dashboard-table-enhanced">
                 <columns>
                     <TableColumn fx:id="colId" text="ORDER ID" prefWidth="140"/>
                     <TableColumn fx:id="colCustomer" text="CUSTOMER" prefWidth="200"/>
@@ -122,6 +121,30 @@
                     <TableColumn fx:id="colStatus" text="STATUS" prefWidth="120"/>
                     <TableColumn fx:id="colDate" text="DATE" prefWidth="120"/>
                     <TableColumn fx:id="colView" text="ACTIONS" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Recent Reviews Table -->
+        <VBox spacing="20.0" styleClass="dashboard-recent-reviews-enhanced">
+            <HBox alignment="BASELINE_LEFT">
+                <Label text="Recent Reviews" styleClass="section-title-enhanced"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox spacing="12" alignment="CENTER_RIGHT">
+                    <Button text="⭐ Manage All Reviews" styleClass="btn-secondary-enhanced" onAction="#viewAllReviews"/>
+                    <Button text="� Reviews Analytics" styleClass="btn-secondary-enhanced" onAction="#viewReviewsAnalytics"/>
+                    <Button text="�📥 Export Reviews" styleClass="btn-export" onAction="#exportReviews"/>
+                </HBox>
+            </HBox>
+            <TableView fx:id="recentReviewsTable" prefHeight="280" styleClass="table-view dashboard-table-enhanced">
+                <columns>
+                    <TableColumn fx:id="colReviewId" text="REVIEW ID" prefWidth="120"/>
+                    <TableColumn fx:id="colProduct" text="PRODUCT" prefWidth="180"/>
+                    <TableColumn fx:id="colReviewer" text="REVIEWER" prefWidth="150"/>
+                    <TableColumn fx:id="colRating" text="RATING" prefWidth="100"/>
+                    <TableColumn fx:id="colComment" text="COMMENT" prefWidth="200"/>
+                    <TableColumn fx:id="colReviewDate" text="DATE" prefWidth="120"/>
+                    <TableColumn fx:id="colReviewActions" text="ACTIONS" prefWidth="120"/>
                 </columns>
             </TableView>
         </VBox>
