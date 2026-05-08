@@ -1144,6 +1144,129 @@
     -fx-font-size: 13px;
 }
 
+/* ===================== */
+/* PARITY FALLBACKS (DARK) */
+/* Missing classes used by FXMLs so text stays readable */
+/* ===================== */
+.text-area-jv, .combo-box-jv, .date-picker-jv {
+    -fx-background-color: #1a1718;
+    -fx-text-fill: #EFE6DD;
+    -fx-prompt-text-fill: #7EBDC2;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.admin-badge {
+    -fx-background-color: #BB4430;
+    -fx-text-fill: #EFE6DD;
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: 12;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.register-scroll, .register-card, .register-form-panel {
+    -fx-background-color: transparent;
+}
+.register-title { -fx-text-fill: #EFE6DD; -fx-font-size: 28px; -fx-font-weight: 900; }
+.register-subtitle, .register-footer-text { -fx-text-fill: #7EBDC2; -fx-font-size: 12px; }
+.register-footer { -fx-padding: 8 0 0 0; }
+
+.empty-state-enhanced { -fx-padding: 48 24; }
+.empty-state-icon-enhanced { -fx-font-size: 48px; -fx-text-fill: #7EBDC2; }
+.empty-state-title-enhanced { -fx-text-fill: #EFE6DD; -fx-font-size: 20px; -fx-font-weight: 800; }
+.empty-state-text-enhanced { -fx-text-fill: #7EBDC2; -fx-font-size: 14px; }
+
+.btn-ghost-enhanced, .btn-wishlist-view, .btn-small {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F3DFA2;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+}
+.btn-ghost-enhanced:hover, .btn-wishlist-view:hover { -fx-background-color: #231F20; }
+
+.btn-primary-enhanced, .btn-secondary-enhanced, .btn-submit-review, .btn-load-more {
+    -fx-background-color: #BB4430;
+    -fx-text-fill: #EFE6DD;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 10 16;
+}
+.btn-primary-enhanced:hover, .btn-secondary-enhanced:hover, .btn-submit-review:hover, .btn-load-more:hover {
+    -fx-background-color: #d65540;
+}
+
+.btn-refresh-dashboard {
+    -fx-background-color: #1a1718;
+    -fx-text-fill: #EFE6DD;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+}
+
+.form-label-enhanced {
+    -fx-text-fill: #7EBDC2;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}
+
+.cart-empty-state-enhanced, .cart-header-row-enhanced,
+.summary-panel-enhanced, .summary-header-enhanced, .summary-title-enhanced, .summary-subtitle-enhanced {
+    -fx-background-color: transparent;
+    -fx-text-fill: #EFE6DD;
+}
+
+.cart-item-count { -fx-text-fill: #7EBDC2; -fx-font-size: 12px; -fx-font-weight: 600; }
+.cart-icon-wrap { -fx-min-width: 28px; -fx-min-height: 28px; -fx-alignment: center; }
+
+.loading-container { -fx-padding: 12 0 12 0; }
+.loading-text { -fx-text-fill: #7EBDC2; -fx-font-size: 13px; }
+.loading-spinner { -fx-text-fill: #F3DFA2; -fx-font-size: 16px; }
+
+.reviews-row, .reviews-header, .reviews-section, .reviews-list, .specs-grid, .stock-qty-row, .action-buttons-row,
+.admin-reviews-content, .category-section, .chart-container, .analytics-cards-container {
+    -fx-background-color: transparent;
+}
+.review-form-subtitle { -fx-text-fill: #7EBDC2; }
+
+.analytics-card {
+    -fx-background-color: #1a1718;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-padding: 16;
+}
+.analytics-card-title { -fx-text-fill: #7EBDC2; -fx-font-size: 12px; -fx-font-weight: 600; }
+.analytics-card-value { -fx-text-fill: #EFE6DD; -fx-font-size: 24px; -fx-font-weight: 900; }
+.analytics-card-change { -fx-text-fill: #F3DFA2; -fx-font-size: 11px; }
+.analytics-chart, .analytics-table, .dashboard-table-enhanced { -fx-background-color: #1a1718; -fx-background-radius: 10; -fx-border-radius: 10; }
+
+.dashboard-title-enhanced, .dashboard-subtitle-enhanced, .dashboard-time-text,
+.dashboard-date-text-enhanced, .dashboard-date-icon-enhanced, .dashboard-date-badge-enhanced,
+.dashboard-recent-orders-enhanced, .dashboard-recent-reviews-enhanced, .dashboard-stats-enhanced {
+    -fx-text-fill: #EFE6DD;
+}
+
+.stat-card, .stat-card-accent, .stat-card-orders, .stat-card-revenue, .stat-card-users, .stat-card-warning,
+.stat-icon-bg-enhanced, .stat-icon-bg-revenue {
+    -fx-background-color: #1a1718;
+    -fx-border-color: #2a2627;
+    -fx-border-width: 1;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+}
+.stat-change-enhanced, .stat-change-positive { -fx-text-fill: #7EBDC2; }
+.stat-change-neutral { -fx-text-fill: #F3DFA2; }
+.stat-change-negative { -fx-text-fill: #BB4430; }
+
 .btn-dark {
     -fx-background-color: #BB4430;
     -fx-text-fill: #EFE6DD;
