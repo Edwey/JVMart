@@ -4,6 +4,7 @@ import com.jvmart.models.Product;
 import com.jvmart.services.ProductService;
 import com.jvmart.session.SessionManager;
 import com.jvmart.utils.AlertHelper;
+import com.jvmart.utils.CsvExportUtil;
 import com.jvmart.utils.SceneRouter;
 import com.jvmart.utils.ThemeManager;
 import com.jvmart.utils.GlobalRefresh;
@@ -16,6 +17,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class AdminInventoryController implements GlobalRefresh.Refreshable {
     @FXML private TableView<Product> inventoryTable;
@@ -214,7 +216,30 @@ public class AdminInventoryController implements GlobalRefresh.Refreshable {
     @FXML private void onNavCustomers() { SceneRouter.navigateTo("admin_customers.fxml"); }
     @FXML private void onNavReports() { SceneRouter.navigateTo("admin_reports.fxml"); }
     @FXML private void exportData() {
-        AlertHelper.info("Export Data", "Data export functionality will be implemented soon.");
+        try {
+            List<String[]> rows = new ArrayList<>();
+            for (Product p : allProducts) {
+                rows.add(new String[]{
+                        String.valueOf(p.getId()),
+                        p.getName(),
+                        p.getCategory(),
+                        String.valueOf(p.getStock()),
+                        String.format("%.2f", p.getPrice())
+                });
+            }
+            var out = CsvExportUtil.exportCsv(
+                    inventoryTable != null ? inventoryTable.getScene().getWindow() : null,
+                    "Export Inventory",
+                    "inventory_export.csv",
+                    new String[]{"id", "name", "category", "stock", "price"},
+                    rows
+            );
+            if (out != null) {
+                AlertHelper.success("Export complete", "Saved: " + out.toAbsolutePath());
+            }
+        } catch (Exception e) {
+            AlertHelper.error("Export failed", e.getMessage());
+        }
     }
 
     @Override

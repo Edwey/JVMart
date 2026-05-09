@@ -3,6 +3,7 @@ package com.jvmart.controllers;
 import com.jvmart.session.SessionManager;
 import com.jvmart.services.ActivityLogService;
 import com.jvmart.utils.AlertHelper;
+import com.jvmart.utils.CsvExportUtil;
 import com.jvmart.utils.SceneRouter;
 import com.jvmart.utils.ThemeManager;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Parent;
+import java.util.List;
 
 public class AdminShellController {
     @FXML private Button navHome;
@@ -123,7 +125,30 @@ public class AdminShellController {
     @FXML private void gotoReports() { navReports(); }
     @FXML private void gotoReviews() { SceneRouter.navigateTo("admin_reviews.fxml"); }
     @FXML private void gotoReviewsAnalytics() { SceneRouter.navigateTo("admin_reviews_analytics.fxml"); }
-    @FXML private void exportReport() { AlertHelper.info("Export Report", "Export is not configured yet."); }
+    @FXML
+    private void exportReport() {
+        try {
+            String username = SessionManager.getInstance().getCurrentUser() != null
+                    ? SessionManager.getInstance().getCurrentUser().getUsername()
+                    : "admin";
+            var out = CsvExportUtil.exportCsv(
+                    navHome != null ? navHome.getScene().getWindow() : null,
+                    "Export Admin Snapshot",
+                    "admin_snapshot.csv",
+                    new String[]{"key", "value"},
+                    List.of(
+                            new String[]{"exported_at", java.time.LocalDateTime.now().toString()},
+                            new String[]{"exported_by", username},
+                            new String[]{"hint", "Use page-specific export for full datasets (Orders, Reviews, Analytics, Inventory, Customers)."}
+                    )
+            );
+            if (out != null) {
+                AlertHelper.success("Export complete", "Saved: " + out.toAbsolutePath());
+            }
+        } catch (Exception e) {
+            AlertHelper.error("Export failed", e.getMessage());
+        }
+    }
     @FXML private void onLogout() { 
         activityLogService.logCurrentUser("LOGOUT", "User logged out.");
         SessionManager.getInstance().logout();

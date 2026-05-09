@@ -4,6 +4,7 @@ import com.jvmart.models.Review;
 import com.jvmart.services.ReviewService;
 import com.jvmart.session.SessionManager;
 import com.jvmart.utils.AlertHelper;
+import com.jvmart.utils.CsvExportUtil;
 import com.jvmart.utils.SceneRouter;
 import com.jvmart.utils.GlobalRefresh;
 import javafx.application.Platform;
@@ -23,6 +24,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 public class AdminReviewsAnalyticsController implements GlobalRefresh.Refreshable {
     
@@ -239,7 +241,40 @@ public class AdminReviewsAnalyticsController implements GlobalRefresh.Refreshabl
     
     @FXML
     private void exportAnalytics() {
-        AlertHelper.info("Export Analytics", "Analytics export functionality will be implemented soon.");
+        try {
+            List<String[]> rows = new ArrayList<>();
+            rows.add(new String[]{"metric", "value"});
+            rows.add(new String[]{"total_reviews", totalReviewsLabel != null ? totalReviewsLabel.getText() : "0"});
+            rows.add(new String[]{"average_rating", avgRatingLabel != null ? avgRatingLabel.getText() : "0"});
+            rows.add(new String[]{"five_star_percentage", fiveStarLabel != null ? fiveStarLabel.getText() : "0%"});
+            rows.add(new String[]{"response_rate", responseRateLabel != null ? responseRateLabel.getText() : "0%"});
+            rows.add(new String[]{}); // spacer row
+            rows.add(new String[]{"category", "review_count", "average_rating", "trend"});
+
+            if (categoryTable != null) {
+                for (CategoryAnalytics c : categoryTable.getItems()) {
+                    rows.add(new String[]{
+                            c.getCategory(),
+                            String.valueOf(c.getReviewCount()),
+                            String.format("%.2f", c.getAvgRating()),
+                            c.getTrend()
+                    });
+                }
+            }
+
+            var out = CsvExportUtil.exportCsv(
+                    categoryTable != null ? categoryTable.getScene().getWindow() : null,
+                    "Export Analytics",
+                    "reviews_analytics_export.csv",
+                    null,
+                    rows
+            );
+            if (out != null) {
+                AlertHelper.success("Export complete", "Saved: " + out.toAbsolutePath());
+            }
+        } catch (Exception e) {
+            AlertHelper.error("Export failed", e.getMessage());
+        }
     }
     
     @FXML

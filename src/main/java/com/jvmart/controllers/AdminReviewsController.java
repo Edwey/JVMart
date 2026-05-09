@@ -4,6 +4,7 @@ import com.jvmart.models.Review;
 import com.jvmart.services.ReviewService;
 import com.jvmart.session.SessionManager;
 import com.jvmart.utils.AlertHelper;
+import com.jvmart.utils.CsvExportUtil;
 import com.jvmart.utils.SceneRouter;
 import com.jvmart.utils.GlobalRefresh;
 import javafx.application.Platform;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.ArrayList;
 
 public class AdminReviewsController implements GlobalRefresh.Refreshable {
     @FXML private TableView<Review> reviewsTable;
@@ -356,7 +358,32 @@ public class AdminReviewsController implements GlobalRefresh.Refreshable {
 
     @FXML
     private void exportReviews() {
-        AlertHelper.info("Export Reviews", "Review export functionality will be implemented soon.");
+        try {
+            List<Review> source = filteredReviews != null ? filteredReviews.stream().toList() : allReviews;
+            List<String[]> rows = new ArrayList<>();
+            for (Review r : source) {
+                rows.add(new String[]{
+                        String.valueOf(r.productId()),
+                        r.username(),
+                        String.valueOf(r.rating()),
+                        r.comment(),
+                        r.createdAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+                });
+            }
+
+            var out = CsvExportUtil.exportCsv(
+                    reviewsTable != null ? reviewsTable.getScene().getWindow() : null,
+                    "Export Reviews",
+                    "reviews_export.csv",
+                    new String[]{"product_id", "reviewer", "rating", "comment", "created_at"},
+                    rows
+            );
+            if (out != null) {
+                AlertHelper.success("Export complete", "Saved: " + out.toAbsolutePath());
+            }
+        } catch (Exception e) {
+            AlertHelper.error("Export failed", e.getMessage());
+        }
     }
 
     @Override

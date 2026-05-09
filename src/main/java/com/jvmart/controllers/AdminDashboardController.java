@@ -8,6 +8,7 @@ import com.jvmart.services.ReviewService;
 import com.jvmart.utils.GlobalRefresh;
 import com.jvmart.session.SessionManager;
 import com.jvmart.utils.AlertHelper;
+import com.jvmart.utils.CsvExportUtil;
 import com.jvmart.utils.SceneRouter;
 import com.jvmart.utils.ThemeManager;
 import javafx.application.Platform;
@@ -20,6 +21,8 @@ import javafx.scene.control.TableView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDashboardController implements GlobalRefresh.Refreshable {
     @FXML private Label totalSalesLabel;
@@ -149,7 +152,30 @@ public class AdminDashboardController implements GlobalRefresh.Refreshable {
     @FXML private void gotoCustomers() { onNavCustomers(); }
     @FXML private void gotoInventory() { onNavInventory(); }
     @FXML private void gotoReports() { onNavReports(); }
-    @FXML private void exportReport() { AlertHelper.info("Export Report", "Export is not configured yet."); }
+    @FXML private void exportReport() {
+        try {
+            List<String[]> rows = new ArrayList<>();
+            rows.add(new String[]{"metric", "value"});
+            rows.add(new String[]{"date", todayLabel != null ? todayLabel.getText() : LocalDate.now().toString()});
+            rows.add(new String[]{"total_sales", totalSalesLabel != null ? totalSalesLabel.getText() : "GHS 0.00"});
+            rows.add(new String[]{"orders_today", ordersTodayLabel != null ? ordersTodayLabel.getText() : "0"});
+            rows.add(new String[]{"low_stock", lowStockLabel != null ? lowStockLabel.getText() : "0"});
+            rows.add(new String[]{"customers", customersLabel != null ? customersLabel.getText() : "0"});
+
+            var out = CsvExportUtil.exportCsv(
+                    totalSalesLabel != null ? totalSalesLabel.getScene().getWindow() : null,
+                    "Export Dashboard Report",
+                    "dashboard_report.csv",
+                    null,
+                    rows
+            );
+            if (out != null) {
+                AlertHelper.success("Export complete", "Saved: " + out.toAbsolutePath());
+            }
+        } catch (Exception e) {
+            AlertHelper.error("Export failed", e.getMessage());
+        }
+    }
     @FXML private void viewAllOrders() { SceneRouter.navigateTo("admin_orders.fxml"); }
     @FXML private void refreshDashboard() { 
         loadDashboardStats();
@@ -157,7 +183,33 @@ public class AdminDashboardController implements GlobalRefresh.Refreshable {
     }
 
     @FXML private void exportOrders() {
-        AlertHelper.info("Export Orders", "Order export functionality will be implemented soon.");
+        try {
+            List<String[]> rows = new ArrayList<>();
+            if (recentOrdersTable != null) {
+                for (Order o : recentOrdersTable.getItems()) {
+                    rows.add(new String[]{
+                            String.valueOf(o.getId()),
+                            String.valueOf(o.getUserId()),
+                            String.valueOf(o.getItems() != null ? o.getItems().size() : 0),
+                            String.format("%.2f", o.getTotal()),
+                            o.getStatus(),
+                            o.getCreatedAt() != null ? o.getCreatedAt().toString() : ""
+                    });
+                }
+            }
+            var out = CsvExportUtil.exportCsv(
+                    recentOrdersTable != null ? recentOrdersTable.getScene().getWindow() : null,
+                    "Export Orders",
+                    "orders_export.csv",
+                    new String[]{"order_id", "user_id", "items", "total", "status", "created_at"},
+                    rows
+            );
+            if (out != null) {
+                AlertHelper.success("Export complete", "Saved: " + out.toAbsolutePath());
+            }
+        } catch (Exception e) {
+            AlertHelper.error("Export failed", e.getMessage());
+        }
     }
 
     @FXML private void viewAllReviews() {
@@ -169,7 +221,41 @@ public class AdminDashboardController implements GlobalRefresh.Refreshable {
     }
 
     @FXML private void exportReviews() {
-        AlertHelper.info("Export Reviews", "Review export functionality will be implemented soon.");
+        Thread.startVirtualThread(() -> {
+            var result = reviewService.getAllReviews();
+            Platform.runLater(() -> {
+                try {
+                    if (result instanceof com.jvmart.services.ServiceResult.Success<?> success) {
+                        @SuppressWarnings("unchecked")
+                        List<Review> reviews = (List<Review>) success.value();
+                        List<String[]> rows = new ArrayList<>();
+                        for (Review r : reviews) {
+                            rows.add(new String[]{
+                                    String.valueOf(r.productId()),
+                                    r.username(),
+                                    String.valueOf(r.rating()),
+                                    r.comment(),
+                                    r.createdAt() != null ? r.createdAt().toString() : ""
+                            });
+                        }
+                        var out = CsvExportUtil.exportCsv(
+                                recentReviewsTable != null ? recentReviewsTable.getScene().getWindow() : null,
+                                "Export Reviews",
+                                "all_reviews_export.csv",
+                                new String[]{"product_id", "reviewer", "rating", "comment", "created_at"},
+                                rows
+                        );
+                        if (out != null) {
+                            AlertHelper.success("Export complete", "Saved: " + out.toAbsolutePath());
+                        }
+                    } else if (result instanceof com.jvmart.services.ServiceResult.Failure<?> failure) {
+                        AlertHelper.error("Export failed", failure.message());
+                    }
+                } catch (Exception e) {
+                    AlertHelper.error("Export failed", e.getMessage());
+                }
+            });
+        });
     }
 
     @Override

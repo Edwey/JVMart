@@ -3,6 +3,7 @@ package com.jvmart.controllers;
 import com.jvmart.services.OrderService;
 import com.jvmart.session.SessionManager;
 import com.jvmart.utils.AlertHelper;
+import com.jvmart.utils.CsvExportUtil;
 import com.jvmart.utils.SceneRouter;
 import com.jvmart.utils.ThemeManager;
 import javafx.application.Platform;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class AdminReportsController {
     @FXML private BarChart<String, Number> ordersChart;
@@ -201,6 +203,30 @@ public class AdminReportsController {
 
     @FXML
     private void exportCustomers() {
-        AlertHelper.info("Export Customers", "Export is not configured yet.");
+        try {
+            List<String[]> rows = new ArrayList<>();
+            if (customersTable != null) {
+                for (String c : customersTable.getItems()) {
+                    rows.add(new String[]{
+                            c,
+                            "Active",
+                            "GHS 0.00",
+                            LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
+                    });
+                }
+            }
+            var out = CsvExportUtil.exportCsv(
+                    customersTable != null ? customersTable.getScene().getWindow() : null,
+                    "Export Customers",
+                    "customers_report.csv",
+                    new String[]{"customer", "status", "ltv", "last_activity"},
+                    rows
+            );
+            if (out != null) {
+                AlertHelper.success("Export complete", "Saved: " + out.toAbsolutePath());
+            }
+        } catch (Exception e) {
+            AlertHelper.error("Export failed", e.getMessage());
+        }
     }
 }
